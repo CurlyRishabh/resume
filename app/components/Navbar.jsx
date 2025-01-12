@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 const Navbar = () => {
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
-  
+
   const navLinks = [
     { title: "Home", path: "/" },
     { title: "About", path: "/about" },
@@ -15,26 +15,26 @@ const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollPos = window.scrollY;
-      
+
       setVisible(
         (prevScrollPos > currentScrollPos) || // Scrolling up
         currentScrollPos < 10 // At the top
       );
-      
+
       setPrevScrollPos(currentScrollPos);
     };
 
     window.addEventListener('scroll', handleScroll);
-    
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, [prevScrollPos]);
 
   return (
-    <nav 
+    <nav
       className={`
-        fixed top-0 w-full bg-secondary backdrop-blur-sm z-50 shadow-sm
+        sticky top-0 w-full bg-black text-white backdrop-blur-sm z-50 shadow-sm
         transition-transform duration-300
         ${visible ? 'translate-y-0' : '-translate-y-full'}
       `}
@@ -47,7 +47,7 @@ const Navbar = () => {
               <li key={link.title}>
                 <a
                   href={link.path}
-                  className="text-gray-600 hover:text-black transition-colors"
+                  className=" hover:text-black transition-colors"
                 >
                   {link.title}
                 </a>
@@ -56,6 +56,7 @@ const Navbar = () => {
           </ul>
         </div>
       </div>
+      <div className='h-[1px] w-full bg-gradient-to-r from-slate-800 via-gray-100 to-slate-800'/>
     </nav>
   );
 };
