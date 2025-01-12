@@ -33,30 +33,27 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`
-        sticky top-0 w-full bg-black text-white backdrop-blur-sm z-50 shadow-sm
-        transition-transform duration-300
-        ${visible ? 'translate-y-0' : '-translate-y-full'}
-      `}
+      className={`fixed top-4 w-full flex justify-center z-10 transition-transform duration-300 ${visible ? 'translate-y-0' : ' -translate-y-[10dvh]'}`}
     >
-      <div className="container mx-auto px-4 py-3">
-        <div className="flex items-center justify-between">
-          <div className="text-xl font-bold">Rishabh</div>
-          <ul className="flex space-x-8">
-            {navLinks.map((link) => (
-              <li key={link.title}>
-                <a
-                  href={link.path}
-                  className=" hover:text-black transition-colors"
-                >
-                  {link.title}
-                </a>
-              </li>
-            ))}
-          </ul>
+      <div className="relative border border-violet-300 flex justify-between items-center px-6 py-1 rounded-2xl bg-opacity-70 bg-[#cbccff] backdrop-blur-sm backdrop-filter w-[90%] lg:w-[80%]">
+        <div className="container mx-auto px-4 py-3">
+          <div className="flex items-center justify-between">
+            <div className="text-xl font-bold">Rishabh</div>
+            <ul className="flex space-x-8">
+              {navLinks.map((link) => (
+                <li key={link.title}>
+                  <a
+                    href={link.path}
+                    className="hover:text-black transition-colors"
+                  >
+                    {link.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
-      <div className='h-[1px] w-full bg-gradient-to-r from-slate-800 via-gray-100 to-slate-800'/>
     </nav>
   );
 };
