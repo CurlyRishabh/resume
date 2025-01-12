@@ -22,7 +22,18 @@ export default function Hero() {
                     </div>
 
                 </div>
-                <div className="aspect-square flex rounded-lg  relative overflow-hidden h-[500px] self-center"><Image src="/hero/hero1.png" alt="hero2" className="" fill={true} /></div>
+                <div className="aspect-square flex rounded-lg relative overflow-hidden h-[500px] self-center">
+  <Image
+    src="/hero/hero1.png"
+    alt="hero2"
+    className="drop-shadow-sm"
+    style={{
+      filter: "drop-shadow(0px -4px 20px #5b63b7",
+    }}
+    fill={true}
+  />
+</div>
+
                 {/* badges */}
                 <Badge text="Software Engineer" className="absolute top-1/3 right-1/4 rounded-es-none" />
 

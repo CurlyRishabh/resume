@@ -2,7 +2,7 @@ import { skillsData } from "../data";
 
 export default function Skills() {
     return (
-        <section className="py-20 bg-white snap- ">
+        <section className="py-20 te snap- ">
             <div className="container mx-auto px-4">
                 <h2 className="text-3xl font-bold mb-12 text-center">My Skills</h2>
                 <div className="grid gap-8">
@@ -15,7 +15,7 @@ export default function Skills() {
                                 {skills.map((skill) => (
                                     <span
                                         key={skill}
-                                        className="px-4 py-2 bg-accent/10 rounded-full text-sm"
+                                        className="px-4 py-2 bg-white text-black rounded-full text-sm"
                                     >
                                         {skill}
                                     </span>

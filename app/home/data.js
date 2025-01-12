@@ -48,12 +48,11 @@ export const experienceData = [
         },
         "employment_period": {
             "start_date": "2022-01-15",
-            "end_date": "2024-01-10",
-            "duration": "2 years"
+            "end_date": "",
         },
         "role": [
             {
-                "title": "Software Engineer",
+                "title": "Software Engineer - Contract",
                 "description": "Developed and maintained various web applications, ensuring high performance and responsiveness."
             }
         ],
@@ -66,9 +65,8 @@ export const experienceData = [
             "link": "https://www.linkedin.com/company/98839840/"
         },
         "employment_period": {
-            "start_date": "2020-01-15",
-            "end_date": "2022-01-10",
-            "duration": "2 years"
+            "start_date": "2024-03-23",
+            "end_date": "",
         },
         "role": [
             {

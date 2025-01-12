@@ -9,14 +9,14 @@ export default function Projects() {
                     {projectData.map((project, index) => (
                         <div
                             key={index}
-                            className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
+                            className=" rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
                         >
                             <div className="aspect-video bg-gray-100">
                                 {/* Add project image here */}
                             </div>
                             <div className="p-6">
-                                <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                                <p className="text-gray-600 mb-4">{project.description}</p>
+                                <h3 className="text-xl font-bold mb-2 text-accent2">{project.title}</h3>
+                                <p className="text-white mb-4">{project.description}</p>
                                 <div className="flex gap-4">
                                     {project.gitref && (
                                         <a

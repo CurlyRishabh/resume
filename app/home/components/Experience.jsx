@@ -2,7 +2,7 @@ import { experienceData } from "../data";
 
 export default function Experience() {
     return (
-        <section className="py-20 bg-gray-50 snap-start">
+        <section className="py-20 snap-start">
             <div className="container mx-auto px-4">
                 <h2 className="text-3xl font-bold mb-12 text-center">Experience</h2>
                 <div className="relative">
@@ -16,15 +16,15 @@ export default function Experience() {
                                 className={`flex ${index % 2 === 0 ? "flex-row" : "flex-row-reverse"
                                     } items-center`}
                             >
-                                <div className="w-1/2 pr-8">
+                                <div className={`w-1/2 ${index % 2 === 0 ? 'pr-8' : "pl-8"}`}>
                                     <div className={`${index % 2 === 0 ? "text-right" : "text-left"}`}>
                                         <h3 className="text-xl font-bold">{experience.company.name}</h3>
                                         <p className="text-accent">{experience.role[0].title}</p>
-                                        <p className="text-sm text-gray-600">
+                                        <p className="text-base text-accent2">
                                             {new Date(experience.employment_period.start_date).toLocaleDateString()} -
-                                            {new Date(experience.employment_period.end_date).toLocaleDateString()}
+                                            {experience.employment_period.end_date.length == 0 ? " Present" : new Date(experience.employment_period.end_date).toLocaleDateString()}
                                         </p>
-                                        <ul className="mt-2 text-sm">
+                                        <ul className="mt-2 text-sm text-left space-y-3">
                                             {experience.tasks.map((task, i) => (
                                                 <li key={i}>{task}</li>
                                             ))}
