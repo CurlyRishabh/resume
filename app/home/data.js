@@ -84,35 +84,39 @@ export const experienceData = [
 
 export const skillsData = {
     "programming_languages": [
-        "C++",
-        "Python"
+        { "name": "C++", "description": "High-performance language commonly used for system/software development." },
+        { "name": "Python", "description": "Versatile language used in web development, data analysis, AI, and more." },
+        { "name": "Javascript", "description": "Popular language for web development, both frontend and backend." }
     ],
     "web_development": [
-        "HTML",
-        "CSS",
-        "JavaScript",
-        "Node",
-        "Tailwind",
-        "React",
-        "Next.js",
-        "Apollo Client/GraphQL",
-        "Express",
-        "MongoDB",
-        "MySQL"
+        { "name": "HTML", "description": "Standard markup language for creating web pages." },
+        { "name": "CSS", "description": "Stylesheet language for designing web pages." },
+        { "name": "Node", "description": "JavaScript runtime for building server-side applications." },
+        { "name": "Tailwind", "description": "Utility-first CSS framework for styling web pages." },
+        { "name": "React", "description": "JavaScript library for building user interfaces." },
+        { "name": "Next.js", "description": "React framework with server-side rendering capabilities." },
+        { "name": "Apollo Client/GraphQL", "description": "GraphQL client for querying and managing server data." },
+        { "name": "Express", "description": "Web application framework for Node.js." },
+        { "name": "MongoDB", "description": "NoSQL database for storing large amounts of data." },
+        { "name": "MySQL", "description": "Relational database management system." },
+        { "name": "Django", "description": "High-level Python web framework that encourages rapid development." }
     ],
     "machine_learning": [
-        "Numpy",
-        "Pandas",
-        "Scikit-learn"
+        { "name": "Numpy", "description": "Library for numerical computing with Python." },
+        { "name": "Pandas", "description": "Data manipulation and analysis library for Python." },
+        { "name": "Scikit-learn", "description": "Machine learning library for Python." }
     ],
     "development_tools": [
-        "Git",
-        "Github",
-        "Linux",
-        "Selenium"
+        { "name": "Git", "description": "Version control system for tracking changes in code." },
+        { "name": "Github", "description": "Platform for hosting and collaborating on Git repositories." },
+        { "name": "Linux", "description": "Open-source operating system used for development and servers." },
+        { "name": "Selenium", "description": "Tool for automating web browser interaction." }
     ],
     "game_development": [
-        "Pygame"
+        { "name": "Pygame", "description": "Library for game development in Python." }
+    ],
+    "software_tools": [
+        { "name": "Nodemation", "description": "Tool for automating workflows and processes." },
+        { "name": "Budibase", "description": "Low-code platform for building business applications." }
     ]
 }
-
