@@ -53,10 +53,14 @@ export const experienceData = [
         "role": [
             {
                 "title": "Software Engineer - Contract",
-                "description": "Developed and maintained various web applications, ensuring high performance and responsiveness."
             }
         ],
-        "tasks": ["Designed and implemented a platform to promote environmental conservation, which increased user engagement by 40%.", "Developed a Pygame-based arcade game with multiple levels and increasing difficulty, enhancing player engagement."]
+        "tasks": [
+            "Developed an automated invoice generation system for the Swishclub store application, streamlining the billing process.",
+            "Maintained and implemented new features for the Swishclub dashboard application, ensuring seamless user experience and system stability.",
+            "Created a versatile CMS dashboard for various use cases utilizing React, Django, and no-code tools like Buildbase and Nodemation to enhance content management efficiency.",
+            "Designed and developed the Swishclub landing page, focusing on user engagement and optimized performance."
+        ]
     },
     {
         "company": {
@@ -74,9 +78,11 @@ export const experienceData = [
                 "description": "Developed and maintained various web applications, ensuring high performance and responsiveness."
             }
         ],
-        "tasks": ["Designed and implemented a platform to promote environmental conservation, which increased user engagement by 40%.",
-            "Developed a Pygame-based arcade game with multiple levels and increasing difficulty, enhancing player engagement."
-
+        "tasks": [
+            "Designed and implemented a platform to promote environmental conservation, resulting in a 40% increase in user engagement.",
+            "Developed an arcade-style game using Pygame, featuring multiple levels and escalating difficulty, which improved player retention and engagement.",
+            "Built a Trello-like dashboard using Vanilla JavaScript, enabling streamlined task management and enhanced user productivity.",
+            "Created an IMDb clone website leveraging Django, providing features such as user authentication, role-based access, and content management."
         ]
     }
 

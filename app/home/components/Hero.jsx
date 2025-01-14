@@ -5,7 +5,7 @@ import Badge from "@/app/components/common/Badge";
 
 export default function Hero() {
     return (
-        <section className="min-h-[100vh] flex items-center bg-black snap-mandatory">
+        <section className="min-h-[100vh] flex items-center bg-black snap-mandatory" id='home'>
             <div className="container mx-auto px-4 relative flex flex-col text-center p-4">
                 <div className="">
                     <div className="space-y-4 text-white">
