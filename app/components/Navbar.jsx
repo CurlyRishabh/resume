@@ -6,10 +6,10 @@ const Navbar = () => {
   const [visible, setVisible] = useState(true);
 
   const navLinks = [
-    { title: "Home", path: "/" },
-    { title: "About", path: "/about" },
-    { title: "Projects", path: "/projects" },
-    { title: "Contact", path: "/contact" },
+    { title: "Home", path: "#home" },
+    // { title: "About", path: "/about" },
+    { title: "Projects", path: "#projects" },
+    // { title: "Contact", path: "/contact" },
   ];
 
   useEffect(() => {
