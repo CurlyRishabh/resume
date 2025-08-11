@@ -99,15 +99,15 @@ export default function Hero() {
                             {/* Floating badges with animations */}
                             <Badge
                                 text="AI/ML Engineer"
-                                className="absolute -top-4 -right-4 animate-float bg-gradient-to-r from-accent to-accent2 text-white border-0 shadow-lg"
+                                className="absolute -top-4 -right-4 animate-float bg-gradient-to-r from-accent to-accent2 text-white border-0 shadow-lg opacity-90"
                             />
                             <Badge
                                 text="Full Stack Developer"
-                                className="absolute -bottom-4 -left-4 animate-float-delayed bg-gradient-to-r from-primary to-accent2 text-black border-0 shadow-lg"
+                                className="absolute -bottom-0 -right-2 animate-float-delayed bg-gradient-to-r from-primary to-accent2 text-black border-0 shadow-lg z-20 opacity-70"
                             />
                             <Badge
                                 text="1+ Years Experience"
-                                className="absolute top-1/2 -left-8 animate-float-slow bg-gradient-to-r from-accent2 to-secondary text-white border-0 shadow-lg"
+                                className="absolute top-1/2 -left-8 animate-float-slow bg-gradient-to-r from-accent2 to-secondary text-white border-0 shadow-lg z-20 opacity-80"
                             />
                         </div>
                     </div>

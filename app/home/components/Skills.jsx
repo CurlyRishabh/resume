@@ -75,11 +75,13 @@ export default function Skills() {
                                                 </div>
 
                                                 {/* Enhanced Tooltip */}
-                                                <div className="absolute z-20 w-64 p-4 bg-gray-900/95 backdrop-blur-sm text-white text-sm rounded-xl border border-accent2/20 shadow-2xl
+                                                <div className="absolute z-20 w-48 sm:w-56 md:w-64 p-3 sm:p-4 bg-gray-900/95 backdrop-blur-sm text-white text-xs sm:text-sm rounded-xl border border-accent2/20 shadow-2xl
                                                     opacity-0 group-hover/skill:opacity-100 transition-all duration-300 pointer-events-none
-                                                    bottom-full left-1/2 transform -translate-x-1/2 mb-3
+                                                    bottom-full mb-2 sm:mb-3
+                                                    left-1/2 transform -translate-x-1/2
+                                                    max-w-[calc(100vw-2rem)]
                                                     before:content-[''] before:absolute before:top-full before:left-1/2
-                                                    before:-translate-x-1/2 before:border-[8px] before:border-transparent
+                                                    before:-translate-x-1/2 before:border-[6px] sm:before:border-[8px] before:border-transparent
                                                     before:border-t-gray-900/95">
                                                     <div className="font-semibold text-accent2 mb-1">{skill.name}</div>
                                                     <div className="text-gray-300 leading-relaxed">{skill.description}</div>

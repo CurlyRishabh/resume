@@ -3,9 +3,10 @@ import { useState, useEffect } from 'react';
 
 const Navbar = () => {
   const [prevScrollPos, setPrevScrollPos] = useState(0);
-  const [visible, setVisible] = useState(true);
+  const [isScrolling, setIsScrolling] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrollTimeout, setScrollTimeout] = useState(null);
 
   const navLinks = [
     { title: "Home", path: "#home", id: "home" },
@@ -19,11 +20,20 @@ const Navbar = () => {
     const handleScroll = () => {
       const currentScrollPos = window.scrollY;
 
-      setVisible(
-        (prevScrollPos > currentScrollPos) || // Scrolling up
-        currentScrollPos < 10 // At the top
-      );
+      // Set scrolling state to true when actively scrolling
+      setIsScrolling(true);
 
+      // Clear existing timeout
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+      }
+
+      // Set new timeout to detect when scrolling stops
+      const newTimeout = setTimeout(() => {
+        setIsScrolling(false);
+      }, 150); // 150ms delay after scrolling stops
+
+      setScrollTimeout(newTimeout);
       setPrevScrollPos(currentScrollPos);
 
       // Update active section based on scroll position
@@ -46,6 +56,9 @@ const Navbar = () => {
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+      }
     };
   }, [prevScrollPos]);
 
@@ -66,12 +79,12 @@ const Navbar = () => {
   };
 
   return (
-    <nav
-      className={`fixed top-4 w-full flex justify-center z-50 transition-transform duration-300 ${
-        visible ? 'translate-y-0' : '-translate-y-[10dvh]'
-      }`}
-    >
-      <div className="relative border border-accent2/30 flex justify-between items-center px-6 py-2 rounded-2xl bg-black/80 backdrop-blur-md backdrop-filter w-[95%] lg:w-[90%] xl:w-[80%] shadow-2xl">
+    <nav className="fixed top-4 w-full flex justify-center z-50 transition-all duration-300">
+      <div className={`relative border border-accent2/30 flex justify-between items-center px-6 py-2 rounded-2xl backdrop-filter w-[95%] lg:w-[90%] xl:w-[80%] shadow-2xl transition-all duration-300 ${
+        isScrolling
+          ? 'bg-black/10 backdrop-blur-lg border-accent2/40'
+          : 'bg-black/80 backdrop-blur-md border-accent2/30'
+      }`}>
         <div className="flex items-center justify-between w-full">
           {/* Logo */}
           <div className="flex items-center gap-3">
