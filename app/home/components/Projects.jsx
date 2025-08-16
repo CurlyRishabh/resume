@@ -43,14 +43,29 @@ export default function Projects() {
                         >
                             {/* Project Image/Icon */}
                             <div className="aspect-video bg-gradient-to-br from-accent2/20 via-accent/20 to-primary/20 relative overflow-hidden">
-                                <div className="absolute inset-0 bg-gradient-to-br from-black/20 to-transparent"></div>
-                                <div className="absolute inset-0 flex items-center justify-center">
-                                    <div className="w-20 h-20 bg-gradient-to-br from-accent2 to-accent rounded-2xl flex items-center justify-center shadow-2xl">
-                                        <span className="text-white text-2xl font-bold">
-                                            {project.title.split(' ').map(word => word.charAt(0)).join('').slice(0, 2)}
-                                        </span>
-                                    </div>
-                                </div>
+                                {project.image ? (
+                                    <>
+                                        {/* Actual Project Image */}
+                                        <img
+                                            src={project.image}
+                                            alt={project.title}
+                                            className="w-full h-full object-cover"
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-br from-black/30 to-transparent"></div>
+                                    </>
+                                ) : (
+                                    <>
+                                        {/* Placeholder with initials */}
+                                        <div className="absolute inset-0 bg-gradient-to-br from-black/20 to-transparent"></div>
+                                        <div className="absolute inset-0 flex items-center justify-center">
+                                            <div className="w-20 h-20 bg-gradient-to-br from-accent2 to-accent rounded-2xl flex items-center justify-center shadow-2xl">
+                                                <span className="text-white text-2xl font-bold">
+                                                    {project.title.split(' ').map(word => word.charAt(0)).join('').slice(0, 2)}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </>
+                                )}
                                 {/* Floating tech icons */}
                                 <div className="absolute top-4 right-4 flex gap-2">
                                     {project.techStack?.slice(0, 3).map((tech, techIndex) => (

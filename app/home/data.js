@@ -19,7 +19,7 @@ export const projectData = [
         title: "Generative AI Chat Platform",
         gitref: "https://github.com/CurlyRishabh/llmChatClone",
         liveref: "",
-        image: "ai-chat",
+        image: "",
         description: "Engineered a production-ready AI chatbot with DeepSeek models, supporting 100+ concurrent users with sub-second response times. Implemented context-aware conversation handling that improved response relevance by 40% compared to baseline models.",
         techStack: ["Ollama", "Flask", "React.js", "Docker"],
         highlights: ["100+ concurrent users", "Sub-second response times", "40% improved relevance"]
@@ -28,16 +28,16 @@ export const projectData = [
         title: "E-commerce Platform",
         gitref: "https://github.com/CurlyRishabh/E-commerce",
         liveref: "https://curlyrishabh.github.io/E-commerce",
-        image: "ecommerce",
-        description: "Developed a secure e-commerce platform with JWT authentication. Implemented advanced product filtering and search functionality that increased customer conversion rates by 35%. Designed user-friendly cart & checkout system for a seamless shopping experience.",
+        image: "projects/ecommerce.png",
+        description: "Built a complete e-commerce platform with full happy flow implementation including hero page, add to cart, remove items, checkout process, product filtering, search functionality, and wishlist management. Features JWT authentication for secure user sessions and responsive design for seamless shopping experience across all devices.",
         techStack: ["MongoDB", "Express.js", "React.js", "Node.js", "JWT"],
-        highlights: ["35% increased conversion", "JWT authentication", "Advanced filtering"]
+        highlights: ["Complete happy flow", "JWT authentication", "Wishlist & filtering"]
     },
     {
         title: "IMDB Clone",
         gitref: "https://github.com/CurlyRishabh/IMDB-clone",
-        liveref: "",
-        image: "imdb",
+        liveref: "https://rishabh11223344.pythonanywhere.com/",
+        image: "projects/imdb-clone.png",
         description: "Created a high-performance movie database supporting 10,000+ movie entries with complex filtering capabilities. Implemented role-based access control system securing sensitive admin functions while allowing public access to reviews. Optimized database queries with Redis caching, reducing page load times by 65%.",
         techStack: ["Django", "PostgreSQL", "Django ORM", "Redis"],
         highlights: ["10,000+ movie entries", "65% faster load times", "Role-based access control"]
