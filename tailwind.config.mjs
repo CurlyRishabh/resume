@@ -20,6 +20,7 @@ export default {
         accent: "var(--accent)",
         ok: "var(--ok)",
         fail: "var(--fail)",
+        warn: "var(--warn)",
       },
       fontFamily: {
         sans: ["var(--font-geist-sans)", "ui-sans-serif", "system-ui", "-apple-system", "Segoe UI", "sans-serif"],

@@ -104,14 +104,6 @@ export const resume = {
         "AI & automation": ["LLM agents (Gemini, OpenAI)", "LangChain", "Playwright", "Stagehand", "Browserbase", "n8n"],
         "Infrastructure": ["PostgreSQL", "Redis", "Docker", "Kubernetes (HPA)", "Git", "CI/CD", "AWS", "Linux"],
     },
-    projects: [
-        {
-            name: "Distributed Orchestrator",
-            url: "https://github.com/CurlyRishabh/distributed-orchestrator",
-            tech: ["FastAPI", "Celery", "Redis", "PostgreSQL"],
-            description: "A fault-tolerant DAG workflow engine. It resolves dependencies at runtime and saves state after every step, so a job that loses a worker halfway resumes where it stopped.",
-        },
-    ],
     education: [
         {
             degree: "B.Tech",
