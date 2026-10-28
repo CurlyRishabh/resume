@@ -3,6 +3,7 @@ import "./globals.css";
 import Footer from "./components/Footer";
 import Toaster from "./components/Toaster";
 import XRay from "./components/XRay";
+import VitalsReporter from "./components/VitalsReporter";
 import { resume } from "./data/resume";
 
 const geistSans = Geist({
@@ -70,6 +71,7 @@ export default function RootLayout({ children }) {
         </div>
         <Toaster />
         <XRay />
+        <VitalsReporter />
       </body>
     </html>
   );

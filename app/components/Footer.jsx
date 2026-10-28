@@ -8,6 +8,7 @@ const Footer = () => {
       <span>{resume.name.full} · Updated {resume.updated}</span>
       <span className="flex flex-wrap gap-x-4 gap-y-2">
         <Link className="link" href="/work/browser-agents">Case study</Link>
+        <Link className="link" href="/status">Status</Link>
         <XRayButton />
       </span>
     </footer>

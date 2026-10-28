@@ -2,6 +2,7 @@
   "note": "Gzipped JS per route in KB, including the shared Next.js/React runtime (~103 KB). Enforced in CI by scripts/check-budget.mjs.",
   "routes": {
     "/page": 125,
-    "/work/browser-agents/page": 115
+    "/work/browser-agents/page": 115,
+    "/status/page": 115
   }
 }
