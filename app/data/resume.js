@@ -28,6 +28,7 @@ export const resume = {
             start_date: "Aug 2025",
             end_date: "Present",
             current: true,
+            case_study: { href: "/work/browser-agents", label: "How the automation platform is built" },
             tech: ["TypeScript", "Node.js", "Playwright", "Stagehand", "Bull", "Redis", "Kubernetes", "Python", "Django", "Gemini", "OpenAI"],
             highlights: [
                 {

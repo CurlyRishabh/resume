@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { resume } from "../data/resume";
 
 function Highlights({ items }) {
@@ -43,6 +44,11 @@ export default function Experience() {
                         </div>
 
                         {job.highlights && <Highlights items={job.highlights} />}
+                        {job.case_study && (
+                            <Link className="link mt-5 inline-block text-[14.5px]" href={job.case_study.href}>
+                                {job.case_study.label}
+                            </Link>
+                        )}
 
                         {job.clients?.map((client) => (
                             <div key={client.client}>

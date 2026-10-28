@@ -1,4 +1,5 @@
 "use client"
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { HANDOFF, STEPS, paymentRetries } from "@/lib/sim/engine";
 import { decodeRun, encodeRun } from "@/lib/sim/share";
@@ -227,7 +228,8 @@ export default function RunSimulator() {
                     A from-scratch simulation of the patterns behind my browser automation work: queue-backed workers,
                     LLM agents for navigation, and deterministic code wherever money moves. Break it with the buttons,
                     or drag the timeline back and change history. It is a TypeScript state machine running in a Web Worker,
-                    checked by property-based tests. Not production code.
+                    checked by property-based tests. Not production code.{" "}
+                    <Link className="link text-ink" href="/work/browser-agents">Read the case study</Link>
                 </p>
             </figcaption>
         </figure>
