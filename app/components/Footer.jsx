@@ -1,5 +1,6 @@
 import Link from "next/link";
 import XRayButton from "./XRayButton";
+import ConsoleButton from "./ConsoleButton";
 import { resume } from "../data/resume";
 
 const Footer = () => {
@@ -10,6 +11,7 @@ const Footer = () => {
         <Link className="link" href="/work/browser-agents">Case study</Link>
         <Link className="link" href="/status">Status</Link>
         <XRayButton />
+        <ConsoleButton />
       </span>
     </footer>
   );

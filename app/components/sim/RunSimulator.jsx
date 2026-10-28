@@ -132,9 +132,21 @@ export default function RunSimulator() {
             settle: reduce,
         });
 
+        // The console's sim.show() and pasted run links change the hash; load that run.
+        const onHash = () => {
+            const run = decodeRun(window.location.hash);
+            if (!run) return;
+            send({ type: "load", seed: run.seed, inputs: run.inputs, autoplay: !reduce, settle: reduce });
+            figureRef.current?.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+        };
+        window.addEventListener("hashchange", onHash);
+
         const observer = new IntersectionObserver(([entry]) => send({ type: "visible", value: entry.isIntersecting }));
         if (figureRef.current) observer.observe(figureRef.current);
-        return () => observer.disconnect();
+        return () => {
+            observer.disconnect();
+            window.removeEventListener("hashchange", onHash);
+        };
     }, [send]);
 
     const act = (action) => send({ type: "act", action });

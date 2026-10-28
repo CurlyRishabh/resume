@@ -219,6 +219,8 @@ html[data-xray] [data-xray="client"]::after { color: var(--accent); }
   color: var(--muted);
 }
 .resume-role li + li { margin-top: 2px; }
+/* Comfortable tap targets on screen; collapsed again for print. */
+.resume-contact a { display: inline-block; padding: 6px 2px; }
 
 @page { size: A4; margin: 12mm 14mm; }
 
@@ -232,9 +234,32 @@ html[data-xray] [data-xray="client"]::after { color: var(--accent); }
   .resume-sheet { padding: 0; border: 0; border-radius: 0; }
   .resume-role, .resume-sheet section { break-inside: avoid; }
   a { color: inherit; text-decoration: none; }
+  .resume-contact a { padding: 0; }
   html[data-xray] [data-xray] { outline: none; }
   html[data-xray] [data-xray]::after { display: none; }
 }
+
+/* Console (⌘K) */
+.console {
+  width: min(680px, calc(100vw - 32px));
+  max-width: none;
+  margin: 12vh auto auto;
+  padding: 0;
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+  transform-origin: top center;
+}
+.console[open] { animation: console-in var(--base) var(--ease-out); }
+.console::backdrop { background: rgba(8, 9, 12, 0.45); }
+.console-entry + .console-entry { margin-top: 6px; }
+.console-input { color: var(--ink); }
+.console-output { color: var(--ink); }
+.console-error { color: var(--fail); }
+.console-info { color: var(--muted); }
+@keyframes console-in { from { opacity: 0; transform: translateY(-6px) scale(0.97); } }
 
 /* Toast */
 .toast {
@@ -269,5 +294,6 @@ html[data-xray] [data-xray="client"]::after { color: var(--accent); }
 @media (prefers-reduced-motion: reduce) {
   .rise { animation: fade 200ms ease both; animation-delay: 0ms; }
   .log-line { animation: none; }
+  .console[open] { animation: fade 150ms ease both; }
   .cell i { transition: none; }
 }

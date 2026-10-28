@@ -5,7 +5,9 @@
       "startServerReadyPattern": "Ready",
       "url": [
         "http://localhost:3000/",
-        "http://localhost:3000/work/browser-agents"
+        "http://localhost:3000/work/browser-agents",
+        "http://localhost:3000/status",
+        "http://localhost:3000/resume"
       ],
       "numberOfRuns": 3
     },

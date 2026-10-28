@@ -43,7 +43,7 @@ export default function ResumePage() {
                 <header className="flex flex-col gap-1 border-b border-rule pb-3">
                     <h1 className="m-0 text-[20pt] font-semibold leading-tight tracking-[-0.02em]">{name.full}</h1>
                     <p className="m-0 text-[10.5pt]">{headline}</p>
-                    <p className="m-0 flex flex-wrap gap-x-3 font-mono text-[8.5pt] text-muted">
+                    <p className="resume-contact m-0 flex flex-wrap items-center gap-x-3 font-mono text-[8.5pt] text-muted">
                         <span>{contact.location}</span>
                         <a href={`mailto:${contact.email}`}>{contact.email}</a>
                         <a href={contact.linkedin}>{strip(contact.linkedin)}</a>
