@@ -1,17 +1,20 @@
-import Hero from "./home/components/Hero";
-import Skills from "./home/components/Skills";
-import Experience from "./home/components/Experience";
-import Projects from "./home/components/Projects";
-import Contact from "./home/components/Contact";
+import Header from "./components/Header";
+import OrchestratorFigure from "./components/OrchestratorFigure";
+import Experience from "./components/Experience";
+import Skills from "./components/Skills";
+import Education from "./components/Education";
+import Contact from "./components/Contact";
+import { resume } from "./data/resume";
 
 export default function Home() {
   return (
-    <div className="min-h-screen snap-mandatory snap-y">
-      <Hero />
-      <Skills />
+    <>
+      <Header />
+      <OrchestratorFigure project={resume.projects[0]} />
       <Experience />
-      <Projects />
+      <Skills />
+      <Education />
       <Contact />
-    </div>
+    </>
   );
 }
