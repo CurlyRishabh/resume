@@ -29,7 +29,7 @@ function Dates({ start, end, className = "" }) {
 
 export default function Experience() {
     return (
-        <section className="mt-20" aria-labelledby="experience">
+        <section className="mt-20" aria-labelledby="experience" data-xray="server" data-xray-label="Experience · server component">
             <h2 id="experience" className="section-label">Experience</h2>
 
             <div className="flex flex-col gap-14">

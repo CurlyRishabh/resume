@@ -2,7 +2,7 @@ import { resume } from "../data/resume";
 
 export default function Education() {
     return (
-        <section className="mt-20" aria-labelledby="education">
+        <section className="mt-20" aria-labelledby="education" data-xray="server" data-xray-label="Education · server component">
             <h2 id="education" className="section-label">Education</h2>
             {resume.education.map((edu) => (
                 <div key={edu.institution} className="grid grid-cols-[1fr_auto] items-baseline gap-x-4 gap-y-0.5">

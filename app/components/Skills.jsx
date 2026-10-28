@@ -3,7 +3,7 @@ import { resume } from "../data/resume";
 
 export default function Skills() {
     return (
-        <section className="mt-20" aria-labelledby="skills">
+        <section className="mt-20" aria-labelledby="skills" data-xray="server" data-xray-label="Skills · server component">
             <h2 id="skills" className="section-label">Skills</h2>
             <dl className="m-0 grid gap-x-6 gap-y-0.5 sm:grid-cols-[8.5rem_1fr] sm:gap-y-3.5">
                 {Object.entries(resume.skills).map(([group, items], i) => (

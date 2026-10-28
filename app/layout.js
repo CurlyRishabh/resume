@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Footer from "./components/Footer";
 import Toaster from "./components/Toaster";
+import XRay from "./components/XRay";
 import { resume } from "./data/resume";
 
 const geistSans = Geist({
@@ -68,6 +69,7 @@ export default function RootLayout({ children }) {
           <Footer />
         </div>
         <Toaster />
+        <XRay />
       </body>
     </html>
   );

@@ -139,6 +139,7 @@ body {
 
 .pod {
   display: inline-flex;
+  flex-shrink: 0;
   align-items: center;
   gap: 6px;
   padding: 3px 8px;
@@ -157,6 +158,47 @@ body {
 .scrubber { accent-color: var(--accent); height: 20px; }
 
 .log-line { animation: line 260ms var(--ease-out) both; }
+
+/* X-ray mode: outlines server-rendered regions (dashed) and client islands (solid) */
+html[data-xray] [data-xray] { position: relative; outline: 1px dashed var(--muted); outline-offset: 6px; border-radius: 4px; }
+html[data-xray] [data-xray="client"] { outline: 1.5px solid var(--accent); }
+html[data-xray] [data-xray]::after {
+  content: attr(data-xray-label);
+  position: absolute;
+  right: 6px;
+  bottom: 6px;
+  z-index: 5;
+  padding: 2px 6px;
+  border: 1px solid currentColor;
+  border-radius: 4px;
+  background: var(--paper);
+  color: var(--muted);
+  font: 500 10.5px/1.4 var(--font-geist-mono), ui-monospace, monospace;
+  pointer-events: none;
+}
+html[data-xray] [data-xray="client"]::after { color: var(--accent); }
+
+.xray-panel {
+  position: fixed;
+  left: 16px;
+  bottom: 16px;
+  z-index: 20;
+  width: min(300px, calc(100vw - 32px));
+  padding: 12px 14px;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  background: var(--surface);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+  color: var(--muted);
+  font: 400 11.5px/1.6 var(--font-geist-mono), ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+  transform-origin: bottom left;
+  transform: translateY(6px) scale(0.96);
+  opacity: 0;
+  visibility: hidden;
+  transition: transform var(--base) var(--ease-out), opacity var(--base) var(--ease-out), visibility 0s linear var(--base);
+}
+.xray-panel.show { transform: none; opacity: 1; visibility: visible; transition-delay: 0s; }
 
 /* Toast */
 .toast {

@@ -3,7 +3,7 @@ import { resume } from "../data/resume";
 
 export default function Contact() {
     return (
-        <section className="mt-20" aria-labelledby="contact">
+        <section className="mt-20" aria-labelledby="contact" data-xray="server" data-xray-label="Contact · server component">
             <h2 id="contact" className="section-label">Contact</h2>
             <div className="flex flex-col gap-4">
                 <p className="m-0 text-lg">Email is the fastest way to reach me.</p>

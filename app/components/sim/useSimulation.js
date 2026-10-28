@@ -26,13 +26,17 @@ export function useSimulation(initialSeed) {
             worker = new Worker(new URL("../../../lib/sim/sim.worker.ts", import.meta.url), { type: "module" });
             worker.onmessage = (event) => setFrame(event.data.frame);
             sendRef.current = (msg) => worker.postMessage(msg);
+            window.__activeWorkers = (window.__activeWorkers ?? 0) + 1;
         } catch {
             runner = new Runner(setFrame);
             sendRef.current = (msg) => runner.handle(msg);
             setThread("main");
         }
         return () => {
-            worker?.terminate();
+            if (worker) {
+                worker.terminate();
+                window.__activeWorkers -= 1;
+            }
             runner?.handle({ type: "pause" });
         };
     }, []);

@@ -81,7 +81,7 @@ function Section({ id, title, children }) {
 
 export default function BrowserAgentsCaseStudy() {
     return (
-        <article>
+        <article data-xray="server" data-xray-label="Case study · server component, static HTML">
             <header className="flex flex-col gap-4 pt-14 sm:pt-20">
                 <Link href="/" className="link w-fit font-mono text-[12.5px] text-muted">← Rishabh Singh Bisht</Link>
                 <p className="m-0 font-mono text-[12.5px] text-muted">Case study · RealPage · 2025 – now</p>

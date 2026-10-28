@@ -156,7 +156,7 @@ export default function RunSimulator() {
         <figure
             ref={figureRef}
             className="rise mt-[52px] overflow-hidden rounded-xl border border-rule bg-surface"
-            style={{ "--i": 4 }}
+            style={{ "--i": 2 }}
             aria-labelledby="sim-title"
             data-xray="client"
             data-xray-label="RunSimulator · client island + Web Worker"
@@ -164,14 +164,15 @@ export default function RunSimulator() {
             <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 border-b border-rule px-4 py-3 font-mono text-[12.5px] text-muted">
                 <span><b className="font-medium text-ink">Fig. 1</b>&nbsp; seed {state.seed >>> 0} · t={state.t}s</span>
                 <span className="tabular-nums" title="The simulation ticks in a Web Worker; the main thread only renders.">
-                    {thread === "worker" ? "worker" : "main thread"} · {tickCost ? `${tickCost.toFixed(2)} ms/tick` : "idle"} · {fps ?? "–"} fps
+                    {thread === "worker" ? "worker" : "main thread"} · {tickCost ? tickCost.toFixed(2) : "–.––"} ms/tick ·{" "}
+                    <span className="inline-block w-[3ch] text-right">{fps ?? "–"}</span> fps
                 </span>
             </div>
 
             <div className="flex flex-col gap-4 px-4 pb-4 pt-4">
                 <Lanes state={state} />
 
-                <div className="flex flex-wrap gap-1.5" aria-label="Pods">
+                <div className="flex h-[26px] gap-1.5 overflow-x-auto whitespace-nowrap" aria-label="Pods">
                     {state.pods.map((pod) => (
                         <span key={pod.id} className={`pod pod-${podState(pod)}`}>
                             <i aria-hidden="true" />{pod.id} v{pod.version} · {podState(pod)}
