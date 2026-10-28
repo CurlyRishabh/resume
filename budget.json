@@ -3,6 +3,7 @@
   "routes": {
     "/page": 125,
     "/work/browser-agents/page": 115,
-    "/status/page": 115
+    "/status/page": 115,
+    "/resume/page": 115
   }
 }

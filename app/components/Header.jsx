@@ -1,3 +1,4 @@
+import Link from "next/link";
 import CopyEmailButton from "./CopyEmailButton";
 import { resume } from "../data/resume";
 
@@ -23,6 +24,7 @@ export default function Header() {
                 <CopyEmailButton email={resume.contact.email} />
                 <a className="link" href={resume.contact.github}>GitHub</a>
                 <a className="link" href={resume.contact.linkedin}>LinkedIn</a>
+                <Link className="link" href="/resume">Resume</Link>
             </div>
         </header>
     );
