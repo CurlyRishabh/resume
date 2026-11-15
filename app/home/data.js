@@ -42,6 +42,25 @@ export const builtData = [
         caption: "Illustration of how it works"
     },
     {
+        id: "launcher",
+        name: "Minimal Launcher",
+        kind: "Android app",
+        line: "A text-only Android home screen for entry-level phones. No icons, no ads, no internet permission.",
+        points: [
+            "The whole app is about 175 KB",
+            "Type a few letters and, once one app is left, it launches by itself",
+            "Notes and widgets are one swipe away, and widgets use memory only while their page is open"
+        ],
+        techStack: ["Kotlin", "Android SDK", "androidx.recyclerview"],
+        links: [
+            { label: "Download APK", href: "https://github.com/CurlyRishabh/minimal-launcher/releases/latest/download/minimal-launcher.apk", primary: true },
+            { label: "Watch demo", href: "https://github.com/CurlyRishabh/minimal-launcher#demo" },
+            { label: "View code", href: "https://github.com/CurlyRishabh/minimal-launcher" }
+        ],
+        visual: "launcher",
+        caption: "Screenshots from the app"
+    },
+    {
         id: "shop",
         name: "Cool Store",
         kind: "Web app, live demo",

@@ -4,8 +4,9 @@ import PointerGlow from "@/app/components/motion/PointerGlow";
 import VoiceDemo from "./demos/VoiceDemo";
 import TerminalDemo from "./demos/TerminalDemo";
 import ShopPreview from "./demos/ShopPreview";
+import LauncherDemo from "./demos/LauncherDemo";
 
-const VISUALS = { voice: VoiceDemo, terminal: TerminalDemo, shop: ShopPreview };
+const VISUALS = { voice: VoiceDemo, launcher: LauncherDemo, shop: ShopPreview, terminal: TerminalDemo };
 
 export default function Built() {
     return (

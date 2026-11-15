@@ -554,3 +554,8 @@ html.cursor-field .cursor-ring { opacity: 0; }
 html.cursor-on input,
 html.cursor-on textarea { cursor: text !important; }
 html.cursor-on select { cursor: auto !important; }
+
+
+/* Launcher demo: screens cross-fade. Named explicitly because the
+   page-wide transition rule would make the fade too quick. */
+.launcher-screen { transition: opacity 0.8s ease-in-out; }
