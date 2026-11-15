@@ -71,7 +71,7 @@ export default function Contact() {
     ];
 
     return (
-        <section className="py-20 bg-gradient-to-br from-black via-gray-900 to-black snap-start" id="contact">
+        <section className="py-20 snap-start" id="contact">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-16">
                     <h2 className="text-4xl md:text-5xl font-bold mb-4">
@@ -87,7 +87,7 @@ export default function Contact() {
                 <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
                     {/* Contact Information */}
                     <div className="space-y-8">
-                        <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50">
+                        <div className="bg-gray-900/70 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/60">
                             <h3 className="text-2xl font-bold text-white mb-6">Let&apos;s Connect</h3>
                             
                             <div className="space-y-6">
@@ -167,7 +167,7 @@ export default function Contact() {
                     </div>
 
                     {/* Contact Form */}
-                    <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50">
+                    <div className="bg-gray-900/70 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/60">
                         <h3 className="text-2xl font-bold text-white mb-6">Send a Message</h3>
                         
                         <form onSubmit={handleSubmit} className="space-y-6">

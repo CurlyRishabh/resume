@@ -4,6 +4,11 @@ export const homeData = {
     name: "Rishabh Singh Bisht",
     headline: "Software Engineer",
     focus: "AI Automation and Distributed Systems",
+    // One plain sentence a non-engineer can repeat. `taglineAccent` is the
+    // part that gets the animated underline.
+    tagline: "I build AI agents that do repetitive work",
+    taglineAccent: "automatically",
+    intro: "Software Engineer with 2.5+ years of experience, currently at RealPage. I take tasks that people used to do by hand and build the software that does them reliably, around the clock.",
     location: "Bangalore, India",
     phone: "+91 9354260456",
     email: "rishabh.bisht.dev@gmail.com",
@@ -11,63 +16,81 @@ export const homeData = {
     github: "https://github.com/CurlyRishabh",
     resume: "/rishabhBishtDev.pdf",
     experienceYears: "2.5+",
-    summary: "Software Engineer with 2.5+ years of experience building highly-available systems and production-grade LLM agent platforms. End-to-end owner of a fault-tolerant LLM agent platform (TypeScript, React, Kubernetes), with a focus on backend infrastructure, high-concurrency workloads, and operational efficiency across enterprise workflows.",
     stats: [
-        { value: "8+", label: "API-less vendor portals automated" },
-        { value: "90%", label: "of eligible order volume automated" },
-        { value: "1–3 days", label: "to onboard a vendor, down from 1–2 weeks" },
-        { value: "~80%", label: "of eligible client emails auto-replied" }
+        { value: "90%", label: "of eligible orders handled automatically" },
+        { value: "10–20 min", label: "of manual work saved on every order" },
+        { value: "1–3 days", label: "to set up a new vendor, down from 1–2 weeks" },
+        { value: "~80%", label: "of eligible client emails answered automatically" }
     ]
 }
 
-// Work shown in the "What I've Built" section. All of it shipped at work,
-// so descriptions stay at the level of the CV.
+// "Before and After" stories. Each one has a plain sentence for any reader,
+// the manual steps before, the automated steps after, and one technical line
+// for engineers. Everything here is taken from the CV; nothing is invented.
+// The last `after` step is the result and is drawn highlighted.
 export const projectData = [
     {
-        title: "LLM Browser Automation Platform",
+        title: "Orders on vendor websites, handled by AI",
         context: "RealPage (Rexera)",
-        problem: "Vendor portals with no API meant analysts spent 10–20 minutes on every order by hand.",
-        built: "A platform where LLM agents navigate each portal's pages, while deterministic Playwright scripts handle the steps that must never go wrong: payments and MFA.",
-        result: "Automated 90% of eligible volume across 8+ portals.",
-        techStack: ["TypeScript", "Node.js", "Playwright", "Stagehand", "Gemini", "OpenAI"]
+        plain: "Analysts used to work through every order by hand on vendor websites that have no API. AI agents now do that work for 90% of eligible orders.",
+        before: ["Analyst opens a vendor portal", "Works through the order by hand", "10–20 minutes on every order"],
+        after: ["Order comes in", "AI agent navigates the portal", "Fixed scripts handle payment and login codes", "90% of eligible orders automated"],
+        tech: "LLM agents for DOM navigation, deterministic Playwright for payments and MFA, across 8+ API-less portals. TypeScript, Node.js, Stagehand, Gemini, OpenAI."
     },
     {
-        title: "Agent Job Queue on Kubernetes",
+        title: "New vendors set up in days, not weeks",
         context: "RealPage (Rexera)",
-        problem: "Agent runs take minutes, which tied up API pods and crashed containers that ran out of memory.",
-        built: "Moved agent runs onto a Bull/Redis queue with autoscaling workers, no retries on payment runs, 35-minute graceful drains during deploys, and CPU-aware process sizing.",
-        result: "Stable autoscaling, an end to the out-of-memory crashes, and deploys that let running jobs finish.",
-        techStack: ["Bull", "Redis", "Kubernetes (HPA)", "Node.js", "Docker"]
+        plain: "Adding a new vendor used to take one to two weeks and a software release. It now takes one to three days and no release.",
+        before: ["New vendor requested", "Integration built and released", "1–2 weeks per vendor"],
+        after: ["New vendor requested", "Vendor described in a configuration record", "No release needed", "1–3 days per vendor"],
+        bars: {
+            before: { label: "Before", value: "1–2 weeks", width: 100 },
+            after: { label: "After", value: "1–3 days", width: 21 }
+        },
+        tech: "Declarative DB-driven configs and connection factories, with a migration from Stagehand v2 to v3."
     },
     {
-        title: "Mailbox Agent",
+        title: "Long AI jobs that keep running",
+        context: "RealPage (Rexera)",
+        plain: "Each AI run takes several minutes. I moved these runs into a queue with their own workers and fixed the memory crashes, so they no longer tie up the main application.",
+        before: ["Multi-minute AI runs inside the application servers", "Containers ran out of memory and crashed"],
+        after: ["Runs wait in a queue", "Workers scale with demand", "Payment runs are never retried automatically", "Releases wait for running jobs to finish"],
+        tech: "Bull/Redis queue on Kubernetes (HPA, 1–3 pods), zero retries on non-idempotent payment runs, 35-minute SIGTERM drains, V8 heap capped at 640 MB."
+    },
+    {
+        title: "Client emails answered automatically",
         context: "Rexera, via MountBlue",
-        problem: "Client emails about orders arrived around the clock and waited for a person to answer.",
-        built: "An agent that answers order questions, such as the HOA or property manager name, and flags payment details and sensitive queries for the operations team.",
-        result: "Auto-replies to ~80% of eligible client emails, with a human in the loop for the rest.",
-        techStack: ["Python", "LangChain", "Gemini", "OpenAI"]
+        plain: "Clients email questions about their orders at all hours. An AI agent now answers about 80% of the eligible ones, and hands anything sensitive to a person.",
+        before: ["Client emails a question about an order", "A team member looks it up and replies"],
+        after: ["Email arrives, any time of day", "AI agent answers order questions", "Payment and sensitive topics go to a person", "~80% of eligible emails answered automatically"],
+        tech: "The Mailbox Agent: an LLM agent with a human-in-the-loop escalation flag. Python, LangChain, Gemini, OpenAI."
     },
     {
-        title: "Document Intelligence Workflow",
+        title: "Documents read and cross-checked by AI",
         context: "Rexera, via MountBlue",
-        problem: "Legal and financial documents arrived unstructured and had to be checked by hand against client communications.",
-        built: "A multi-agent LLM workflow that extracts the terms from each document and cross-references them against what the client was told.",
-        result: "End-to-end extraction, QA and reconciliation in one automated flow.",
-        techStack: ["Python", "LangChain", "LLM agents"]
+        plain: "Legal and financial documents arrive in no fixed format. AI agents now pull out the key terms and compare them with what the client was told.",
+        before: ["Unstructured legal and financial documents arrive", "Terms are checked by hand against client messages"],
+        after: ["AI agents extract the key terms", "Terms are cross-checked against client communications", "Extraction, QA and reconciliation in one flow"],
+        tech: "Multi-agent LLM workflow for end-to-end document intelligence: extraction, cross-referencing and reconciliation."
     },
     {
-        title: "CMS Generator and Operations Dashboard",
+        title: "Content updates without an engineer",
         context: "Swish Club, via MountBlue",
-        problem: "Content changes needed manual data entry, database edits and a code deployment.",
-        built: "A CMS-based generator and an internal dashboard to manage 500+ mobile app products and coupons without engineering involvement.",
-        result: "Removed 90% of manual data entry, saving ~15 hours every week.",
-        techStack: ["React", "Django", "Budibase", "n8n"]
+        plain: "Updating app content used to mean typing data in by hand, editing the database and releasing code. The team now does it themselves in a dashboard.",
+        before: ["Content typed in by hand", "Manual database edits", "A code release for each change"],
+        after: ["Team fills in a CMS form", "Dashboard manages 500+ products and coupons", "No engineer needed", "90% less manual data entry, ~15 hours saved weekly"],
+        tech: "CMS-based generator (React, Django) and an internal operations dashboard."
     }
 ]
+
+// Shown above the experience cards: explains why four company names appear
+// in 2.5 years.
+export const careerNote = "Since Feb 2025 I have worked on the same product: first for Rexera as a MountBlue engineer, then directly from Aug 2025. Rexera is now part of RealPage."
 
 export const experienceData = [
     {
         company: "RealPage, Inc.",
+        about: "US real-estate software company",
         note: "Rexera, acquired by RealPage",
         link: "https://www.realpage.com",
         title: "Software Development Engineer",
@@ -83,6 +106,7 @@ export const experienceData = [
     },
     {
         company: "MountBlue Technologies",
+        about: "Software engineering services company",
         note: "Client engagements",
         link: "https://mountblue.io",
         title: "Software Development Engineer",

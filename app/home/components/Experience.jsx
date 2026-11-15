@@ -1,4 +1,5 @@
-import { experienceData, educationData } from "../data";
+import { experienceData, educationData, careerNote } from "../data";
+import Reveal from "@/app/components/common/Reveal";
 
 function Highlights({ items }) {
     return (
@@ -15,24 +16,31 @@ function Highlights({ items }) {
 
 export default function Experience() {
     return (
-        <section className="py-20 bg-gradient-to-br from-black via-gray-900 to-black snap-start" id="experience">
+        <section className="py-20 snap-start" id="experience">
             <div className="container mx-auto px-4">
-                <div className="text-center mb-16">
+                <Reveal className="text-center mb-12">
                     <h2 className="text-4xl md:text-5xl font-bold mb-4">
                         <span className="bg-gradient-to-r from-primary via-accent2 to-accent bg-clip-text text-transparent">
                             Work Experience
                         </span>
                     </h2>
                     <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-                        2.5+ years building LLM agent platforms and the infrastructure that keeps them running
+                        2.5+ years building AI agent platforms and the infrastructure that keeps them running
                     </p>
-                </div>
+                </Reveal>
 
                 <div className="max-w-4xl mx-auto space-y-8">
+                    {/* Why several company names appear in a short span */}
+                    <Reveal className="flex items-start gap-3 rounded-2xl border border-accent2/30 bg-accent2/10 px-5 py-4 text-gray-200">
+                        <span className="text-accent2 font-bold" aria-hidden="true">→</span>
+                        <p className="leading-relaxed">{careerNote}</p>
+                    </Reveal>
+
                     {experienceData.map((experience) => (
-                        <article
+                        <Reveal
+                            as="article"
                             key={experience.company}
-                            className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 lg:p-8 border border-gray-700/50 hover:border-accent2/50 transition-all duration-500"
+                            className="bg-gray-900/70 backdrop-blur-sm rounded-2xl p-6 lg:p-8 border border-gray-700/60 hover:border-accent2/50"
                         >
                             {/* Company header */}
                             <div className="flex items-start gap-4 mb-5">
@@ -59,9 +67,9 @@ export default function Experience() {
                                         {experience.title}
                                         {experience.location && <span className="text-gray-400 font-normal"> · {experience.location}</span>}
                                     </p>
-                                    {experience.note && (
-                                        <p className="text-sm text-gray-400 mt-1">{experience.note}</p>
-                                    )}
+                                    <p className="text-sm text-gray-400 mt-1">
+                                        {[experience.about, experience.note].filter(Boolean).join(" · ")}
+                                    </p>
                                 </div>
                             </div>
 
@@ -95,18 +103,18 @@ export default function Experience() {
                                     ))}
                                 </div>
                             )}
-                        </article>
+                        </Reveal>
                     ))}
 
                     {/* Education */}
-                    <article className="bg-gradient-to-r from-accent2/10 to-accent/10 rounded-2xl p-6 lg:p-8 border border-accent2/20">
+                    <Reveal as="article" className="bg-gradient-to-r from-accent2/10 to-accent/10 rounded-2xl p-6 lg:p-8 border border-accent2/20">
                         <p className="text-sm uppercase tracking-wider text-accent2 font-semibold mb-2">Education</p>
                         <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
                             <h3 className="text-xl font-bold text-white">{educationData.degree}</h3>
                             <span className="text-sm text-gray-400 whitespace-nowrap">{educationData.period}</span>
                         </div>
                         <p className="text-gray-300 mt-1">{educationData.institution}</p>
-                    </article>
+                    </Reveal>
                 </div>
             </div>
         </section>
