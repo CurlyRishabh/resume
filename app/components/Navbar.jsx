@@ -10,9 +10,10 @@ const Navbar = () => {
 
   const navLinks = [
     { title: "Home", path: "#home", id: "home" },
-    { title: "Skills", path: "#skills", id: "skills" },
+    { title: "Projects", path: "#built", id: "built" },
+    { title: "Work", path: "#projects", id: "projects" },
     { title: "Experience", path: "#experience", id: "experience" },
-    { title: "Projects", path: "#projects", id: "projects" },
+    { title: "Skills", path: "#skills", id: "skills" },
     { title: "Contact", path: "#contact", id: "contact" },
   ];
 
@@ -89,9 +90,9 @@ const Navbar = () => {
           {/* Logo */}
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 bg-gradient-to-br from-accent2 to-accent rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">R</span>
+              <span className="text-black font-bold text-sm">R</span>
             </div>
-            <span className="text-white text-xl font-bold bg-gradient-to-r from-primary to-accent2 bg-clip-text text-transparent">
+            <span className="text-white text-xl font-semibold tracking-tight">
               Rishabh
             </span>
           </div>
@@ -105,7 +106,7 @@ const Navbar = () => {
                   onClick={(e) => handleNavClick(e, link.path)}
                   className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 hover:scale-105 ${
                     activeSection === link.id
-                      ? 'bg-gradient-to-r from-accent2 to-accent text-white shadow-lg'
+                      ? 'bg-white/10 text-white'
                       : 'text-gray-300 hover:text-white hover:bg-white/10'
                   }`}
                 >
@@ -137,7 +138,7 @@ const Navbar = () => {
                     onClick={(e) => handleNavClick(e, link.path)}
                     className={`block px-6 py-3 text-sm font-medium transition-all duration-300 ${
                       activeSection === link.id
-                        ? 'bg-gradient-to-r from-accent2 to-accent text-white'
+                        ? 'bg-white/10 text-white'
                         : 'text-gray-300 hover:text-white hover:bg-white/10'
                     }`}
                   >
