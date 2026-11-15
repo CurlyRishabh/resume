@@ -9,7 +9,6 @@ export default function Contact() {
         subject: '',
         message: ''
     });
-    const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitStatus, setSubmitStatus] = useState(null);
 
     const handleChange = (e) => {
@@ -19,19 +18,13 @@ export default function Contact() {
         });
     };
 
-    const handleSubmit = async (e) => {
+    // There is no backend: hand the message to the visitor's own email app,
+    // so nothing is ever silently dropped.
+    const handleSubmit = (e) => {
         e.preventDefault();
-        setIsSubmitting(true);
-        
-        // Simulate form submission
-        setTimeout(() => {
-            setIsSubmitting(false);
-            setSubmitStatus('success');
-            setFormData({ name: '', email: '', subject: '', message: '' });
-            
-            // Reset status after 3 seconds
-            setTimeout(() => setSubmitStatus(null), 3000);
-        }, 1000);
+        const body = `${formData.message}\n\nFrom: ${formData.name} <${formData.email}>`;
+        window.location.href = `mailto:${contactData.email}?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(body)}`;
+        setSubmitStatus('opened');
     };
 
     const socialLinks = [
@@ -87,7 +80,7 @@ export default function Contact() {
                         </span>
                     </h2>
                     <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-                        Ready to collaborate on your next project? Let's discuss how we can work together to bring your ideas to life.
+                        Hiring, or want to talk about LLM agents and automation? I&apos;d like to hear from you.
                     </p>
                 </div>
 
@@ -95,7 +88,7 @@ export default function Contact() {
                     {/* Contact Information */}
                     <div className="space-y-8">
                         <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50">
-                            <h3 className="text-2xl font-bold text-white mb-6">Let's Connect</h3>
+                            <h3 className="text-2xl font-bold text-white mb-6">Let&apos;s Connect</h3>
                             
                             <div className="space-y-6">
                                 <div className="flex items-center gap-4">
@@ -167,8 +160,8 @@ export default function Contact() {
                                 <h4 className="text-green-400 font-semibold">Available for Work</h4>
                             </div>
                             <p className="text-gray-300 text-sm">
-                                I'm currently open to new opportunities and exciting projects. 
-                                Let's discuss how we can work together!
+                                I&apos;m currently open to new opportunities.
+                                Email is the fastest way to reach me.
                             </p>
                         </div>
                     </div>
@@ -223,7 +216,7 @@ export default function Contact() {
                                     onChange={handleChange}
                                     required
                                     className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600/50 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-accent2 focus:ring-2 focus:ring-accent2/20 transition-all"
-                                    placeholder="What's this about?"
+                                    placeholder="What is this about?"
                                 />
                             </div>
 
@@ -239,40 +232,26 @@ export default function Contact() {
                                     required
                                     rows={6}
                                     className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600/50 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-accent2 focus:ring-2 focus:ring-accent2/20 transition-all resize-none"
-                                    placeholder="Tell me about your project or idea..."
+                                    placeholder="Tell me about the role or project..."
                                 />
                             </div>
 
                             <button
                                 type="submit"
-                                disabled={isSubmitting}
-                                className="w-full px-6 py-4 bg-gradient-to-r from-accent2 to-accent hover:from-accent hover:to-accent2 text-white font-semibold rounded-xl transition-all duration-300 hover:scale-[1.02] hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                                className="w-full px-6 py-4 bg-gradient-to-r from-accent2 to-accent hover:from-accent hover:to-accent2 text-white font-semibold rounded-xl transition-all duration-300 hover:scale-[1.02] hover:shadow-lg flex items-center justify-center gap-2"
                             >
-                                {isSubmitting ? (
-                                    <>
-                                        <svg className="animate-spin w-5 h-5" fill="none" viewBox="0 0 24 24">
-                                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
-                                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/>
-                                        </svg>
-                                        Sending...
-                                    </>
-                                ) : (
-                                    <>
-                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
-                                        </svg>
-                                        Send Message
-                                    </>
-                                )}
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                                </svg>
+                                Open in Email App
                             </button>
 
-                            {submitStatus === 'success' && (
-                                <div className="bg-green-500/10 border border-green-500/20 rounded-xl p-4 text-green-400 text-center">
-                                    <svg className="w-6 h-6 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7"/>
-                                    </svg>
-                                    Message sent successfully! I'll get back to you soon.
-                                </div>
+                            {submitStatus === 'opened' && (
+                                <p className="bg-accent2/10 border border-accent2/20 rounded-xl p-4 text-gray-200 text-center text-sm" role="status">
+                                    Your email app should have opened with the message ready to send.
+                                    If it didn&apos;t, write to me at{' '}
+                                    <a href={`mailto:${contactData.email}`} className="text-accent hover:text-accent2">{contactData.email}</a>.
+                                </p>
                             )}
                         </form>
                     </div>

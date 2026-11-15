@@ -1,186 +1,146 @@
+// Single source of truth for the site content. Mirrors the CV (rishabhBishtDev.pdf).
+
 export const homeData = {
     name: "Rishabh Singh Bisht",
+    headline: "Software Engineer",
+    focus: "AI Automation and Distributed Systems",
     location: "Bangalore, India",
     phone: "+91 9354260456",
-    email: "rissag906@gmail.com",
+    email: "rishabh.bisht.dev@gmail.com",
     linkedin: "https://linkedin.com/in/rishabhsingh940",
     github: "https://github.com/CurlyRishabh",
-    typewriterTexts: [
-        "Full Stack Developer",
-        "AI/ML Engineer",
-        "Solutions-Oriented Developer",
-        "MERN Stack Specialist"
-    ],
-    summary: "Solutions-oriented Full Stack Developer with 1+ years of experience designing and implementing scalable applications using JavaScript, Python, and React.js. Specialized in artificial intelligence integration, workflow automation, and cloud infrastructure optimization, delivering 30%+ efficiency improvements across multiple projects."
+    resume: "/rishabhBishtDev.pdf",
+    experienceYears: "2.5+",
+    summary: "Software Engineer with 2.5+ years of experience building highly-available systems and production-grade LLM agent platforms. End-to-end owner of a fault-tolerant LLM agent platform (TypeScript, React, Kubernetes), with a focus on backend infrastructure, high-concurrency workloads, and operational efficiency across enterprise workflows.",
+    stats: [
+        { value: "8+", label: "API-less vendor portals automated" },
+        { value: "90%", label: "of eligible order volume automated" },
+        { value: "1–3 days", label: "to onboard a vendor, down from 1–2 weeks" },
+        { value: "~80%", label: "of eligible client emails auto-replied" }
+    ]
 }
 
+// Work shown in the "What I've Built" section. All of it shipped at work,
+// so descriptions stay at the level of the CV.
 export const projectData = [
     {
-        title: "Generative AI Chat Platform",
-        gitref: "https://github.com/CurlyRishabh/llmChatClone",
-        liveref: "",
-        image: "",
-        description: "Engineered a production-ready AI chatbot with DeepSeek models, supporting 100+ concurrent users with sub-second response times. Implemented context-aware conversation handling that improved response relevance by 40% compared to baseline models.",
-        techStack: ["Ollama", "Flask", "React.js", "Docker"],
-        highlights: ["100+ concurrent users", "Sub-second response times", "40% improved relevance"]
+        title: "LLM Browser Automation Platform",
+        context: "RealPage (Rexera)",
+        problem: "Vendor portals with no API meant analysts spent 10–20 minutes on every order by hand.",
+        built: "A platform where LLM agents navigate each portal's pages, while deterministic Playwright scripts handle the steps that must never go wrong: payments and MFA.",
+        result: "Automated 90% of eligible volume across 8+ portals.",
+        techStack: ["TypeScript", "Node.js", "Playwright", "Stagehand", "Gemini", "OpenAI"]
     },
     {
-        title: "E-commerce Platform",
-        gitref: "https://github.com/CurlyRishabh/E-commerce",
-        liveref: "https://curlyrishabh.github.io/E-commerce",
-        image: "projects/ecommerce.png",
-        description: "Built a complete e-commerce platform with full happy flow implementation including hero page, add to cart, remove items, checkout process, product filtering, search functionality, and wishlist management. Features JWT authentication for secure user sessions and responsive design for seamless shopping experience across all devices.",
-        techStack: ["MongoDB", "Express.js", "React.js", "Node.js", "JWT"],
-        highlights: ["Complete happy flow", "JWT authentication", "Wishlist & filtering"]
+        title: "Agent Job Queue on Kubernetes",
+        context: "RealPage (Rexera)",
+        problem: "Agent runs take minutes, which tied up API pods and crashed containers that ran out of memory.",
+        built: "Moved agent runs onto a Bull/Redis queue with autoscaling workers, no retries on payment runs, 35-minute graceful drains during deploys, and CPU-aware process sizing.",
+        result: "Stable autoscaling, an end to the out-of-memory crashes, and deploys that let running jobs finish.",
+        techStack: ["Bull", "Redis", "Kubernetes (HPA)", "Node.js", "Docker"]
     },
     {
-        title: "IMDB Clone",
-        gitref: "https://github.com/CurlyRishabh/IMDB-clone",
-        liveref: "https://rishabh11223344.pythonanywhere.com/",
-        image: "projects/imdb-clone.png",
-        description: "Created a high-performance movie database supporting 10,000+ movie entries with complex filtering capabilities. Implemented role-based access control system securing sensitive admin functions while allowing public access to reviews. Optimized database queries with Redis caching, reducing page load times by 65%.",
-        techStack: ["Django", "PostgreSQL", "Django ORM", "Redis"],
-        highlights: ["10,000+ movie entries", "65% faster load times", "Role-based access control"]
+        title: "Mailbox Agent",
+        context: "Rexera, via MountBlue",
+        problem: "Client emails about orders arrived around the clock and waited for a person to answer.",
+        built: "An agent that answers order questions, such as the HOA or property manager name, and flags payment details and sensitive queries for the operations team.",
+        result: "Auto-replies to ~80% of eligible client emails, with a human in the loop for the rest.",
+        techStack: ["Python", "LangChain", "Gemini", "OpenAI"]
+    },
+    {
+        title: "Document Intelligence Workflow",
+        context: "Rexera, via MountBlue",
+        problem: "Legal and financial documents arrived unstructured and had to be checked by hand against client communications.",
+        built: "A multi-agent LLM workflow that extracts the terms from each document and cross-references them against what the client was told.",
+        result: "End-to-end extraction, QA and reconciliation in one automated flow.",
+        techStack: ["Python", "LangChain", "LLM agents"]
+    },
+    {
+        title: "CMS Generator and Operations Dashboard",
+        context: "Swish Club, via MountBlue",
+        problem: "Content changes needed manual data entry, database edits and a code deployment.",
+        built: "A CMS-based generator and an internal dashboard to manage 500+ mobile app products and coupons without engineering involvement.",
+        result: "Removed 90% of manual data entry, saving ~15 hours every week.",
+        techStack: ["React", "Django", "Budibase", "n8n"]
     }
 ]
 
 export const experienceData = [
     {
-        "company": {
-            "name": "Rexera (formerly InspectHOA)",
-            "logo_url": "https://media.licdn.com/dms/image/v2/D560BAQHcidrmQS12rA/company-logo_100_100/company-logo_100_100/0/1730891630815/swishclubhq_logo?e=1744848000&v=beta&t=EMXKM4qGESBxPraKjcBYnVccY4Un26gGBq_pH54Pdho",
-            "link": "https://www.rexera.com"
-        },
-        "employment_period": {
-            "start_date": "2025-02-01",
-            "end_date": "",
-        },
-        "role": [
-            {
-                "title": "Software Engineer (Contract)",
-            }
-        ],
-        "tasks": [
-            "Engineered AI-driven solutions using Python, LangChain, and Large Language Model (LLM) APIs, increasing client satisfaction by 25% and reducing manual processing time by 40%",
-            "Redesigned the Mailbox Agent application to predict client communications with 85% accuracy by implementing advanced Natural Language Processing (NLP) algorithms",
-            "Collaborated with cross-functional teams to enhance the Document Ordering Bot, resulting in 30% reduction in document processing time and 20% fewer errors",
-            "Streamlined integration between AI backend services and frontend React components, decreasing system response time by 35%"
+        company: "RealPage, Inc.",
+        note: "Rexera, acquired by RealPage",
+        link: "https://www.realpage.com",
+        title: "Software Development Engineer",
+        location: "Bangalore",
+        period: "Aug 2025 - Present",
+        tech: ["TypeScript", "Node.js", "Playwright", "Stagehand", "Bull", "Redis", "Kubernetes", "Python", "Django", "Gemini", "OpenAI"],
+        highlights: [
+            "Architected an LLM-driven browser automation platform on 8+ API-less vendor portals, pairing LLM agents for DOM navigation with deterministic Playwright for payments/MFA. Automated 90% of eligible volume at 80% accuracy, cutting 10–20 min of manual analyst processing per order.",
+            "Decoupled multi-minute agent workflows from API pods using a Bull/Redis queue on Kubernetes (Node cluster, autoscaling 1–3 pods). Enforced zero-retry policies on non-idempotent payment runs, graceful 35-min SIGTERM drains during deploys, and payload credential stripping.",
+            "Prevented out-of-memory crashes by resolving container over-subscription caused by cluster forks reading host cores over pod limits; patched CPU-aware process sizing, capped V8 heap at 640 MB, and unified requests/limits for stable HPA autoscaling.",
+            "Re-architected portal integrations using declarative DB-driven configs and connection factories (migrating Stagehand v2 to v3), cutting new-vendor onboarding from 1–2 weeks to 1–3 days without requiring deployments."
         ]
     },
     {
-        "company": {
-            "name": "Swish Club",
-            "logo_url": "https://media.licdn.com/dms/image/v2/D560BAQHcidrmQS12rA/company-logo_100_100/company-logo_100_100/0/1730891630815/swishclubhq_logo?e=1744848000&v=beta&t=EMXKM4qGESBxPraKjcBYnVccY4Un26gGBq_pH54Pdho",
-            "link": "https://www.linkedin.com/company/98839840/"
-        },
-        "employment_period": {
-            "start_date": "2024-06-01",
-            "end_date": "2025-01-31",
-        },
-        "role": [
+        company: "MountBlue Technologies",
+        note: "Client engagements",
+        link: "https://mountblue.io",
+        title: "Software Development Engineer",
+        location: "",
+        period: "Mar 2024 - Jul 2025",
+        tech: ["React", "Node.js", "Python", "Django", "Gemini", "OpenAI", "Budibase", "n8n", "LangChain"],
+        clients: [
             {
-                "title": "Software Engineer (Contract)",
-            }
-        ],
-        "tasks": [
-            "Architected and deployed 3 critical internal dashboards using React.js and Budibase, serving 50+ internal users and streamlining operations by 40%",
-            "Implemented comprehensive Invoice Generator CMS with React & Django, processing 500+ monthly invoices and reducing manual effort by 80%",
-            "Engineered automated workflows using N8n that eliminated 15+ hours of weekly manual tasks and improved data accuracy by 95%",
-            "Optimized HomeStore Dashboard performance, reducing page load time by 60% and increasing user retention by 25%"
-        ]
-    },
-    {
-        "company": {
-            "name": "MountBlue Technologies",
-            "logo_url": "https://media.licdn.com/dms/image/v2/D560BAQHcidrmQS12rA/company-logo_100_100/company-logo_100_100/0/1730891630815/swishclubhq_logo?e=1744848000&v=beta&t=EMXKM4qGESBxPraKjcBYnVccY4Un26gGBq_pH54Pdho",
-            "link": "https://mountblue.io"
-        },
-        "employment_period": {
-            "start_date": "2024-03-01",
-            "end_date": "",
-        },
-        "role": [
+                client: "Rexera (now part of RealPage)",
+                period: "Feb 2025 - Jul 2025",
+                highlights: [
+                    "Developed the Mailbox Agent that auto-replies to ~80% of eligible client emails around the clock, answering order questions such as the HOA or property manager name and escalating payment details and sensitive queries to the operations team through a human-in-the-loop flag.",
+                    "Developed a multi-agent LLM workflow for end-to-end document intelligence, automating the extraction of unstructured legal/financial data and proactively cross-referencing the extracted terms against client communications for zero-defect QA and reconciliation."
+                ]
+            },
             {
-                "title": "Software Development Engineer",
-                "description": "Developed and maintained various web applications, ensuring high performance and responsiveness."
+                client: "Swish Club",
+                period: "Jul 2024 - Jan 2025",
+                highlights: [
+                    "Eliminated 90% of manual data entry by architecting a CMS-based generator (React, Django), saving ~15 hours of administrative overhead weekly.",
+                    "Engineered an internal operations dashboard to manage 500+ mobile app products and coupons. Decoupled content updates from the engineering lifecycle, eliminating the need for manual database interventions and code deployments."
+                ]
             }
-        ],
-        "tasks": [
-            "Developed a responsive full-stack application using JavaScript and Django that handled 10,000+ concurrent users",
-            "Optimized data processing algorithms for 500K+ dataset entries, improving query performance by 70%",
-            "Refactored backend API architecture, reducing response time from 900ms to 250ms and enhancing overall system throughput by 45%"
         ]
     }
 ]
 
-export const skillsData = {
-    "languages": [
-        { "name": "JavaScript", "description": "ES6+ features for modern web development, both frontend and backend.", "icon": "javascript" },
-        { "name": "TypeScript", "description": "Strongly typed programming language that builds on JavaScript.", "icon": "typescript" },
-        { "name": "Python", "description": "Versatile language used in web development, data analysis, AI, and automation.", "icon": "python" },
-        { "name": "C++", "description": "High-performance language for system programming and competitive coding.", "icon": "cpp" }
-    ],
-    "frontend": [
-        { "name": "React.js", "description": "JavaScript library for building interactive user interfaces.", "icon": "react" },
-        { "name": "Next.js", "description": "React framework with server-side rendering and static site generation.", "icon": "nextjs" },
-        { "name": "Redux", "description": "Predictable state container for JavaScript applications.", "icon": "redux" },
-        { "name": "HTML5", "description": "Latest version of markup language for structuring web content.", "icon": "html" },
-        { "name": "CSS3", "description": "Stylesheet language with modern features for responsive design.", "icon": "css" },
-        { "name": "Material UI", "description": "React components implementing Google's Material Design.", "icon": "materialui" },
-        { "name": "Bootstrap", "description": "CSS framework for responsive, mobile-first web development.", "icon": "bootstrap" }
-    ],
-    "backend": [
-        { "name": "Node.js", "description": "JavaScript runtime for building scalable server-side applications.", "icon": "nodejs" },
-        { "name": "Express.js", "description": "Fast, unopinionated web framework for Node.js applications.", "icon": "express" },
-        { "name": "Django", "description": "High-level Python web framework for rapid development.", "icon": "django" },
-        { "name": "Flask", "description": "Lightweight Python web framework for building APIs and web apps.", "icon": "flask" },
-        { "name": "REST APIs", "description": "Architectural style for designing networked applications.", "icon": "api" },
-        { "name": "GraphQL", "description": "Query language and runtime for APIs with flexible data fetching.", "icon": "graphql" }
-    ],
-    "databases": [
-        { "name": "MongoDB", "description": "NoSQL document database for modern applications.", "icon": "mongodb" },
-        { "name": "PostgreSQL", "description": "Advanced open-source relational database system.", "icon": "postgresql" },
-        { "name": "MySQL", "description": "Popular open-source relational database management system.", "icon": "mysql" },
-        { "name": "Redis", "description": "In-memory data structure store for caching and real-time applications.", "icon": "redis" }
-    ],
-    "devops_tools": [
-        { "name": "Docker", "description": "Platform for developing, shipping, and running applications in containers.", "icon": "docker" },
-        { "name": "Kubernetes", "description": "Container orchestration platform for automating deployment and scaling.", "icon": "kubernetes" },
-        { "name": "CI/CD", "description": "Continuous integration and deployment practices for automated workflows.", "icon": "cicd" },
-        { "name": "Git", "description": "Distributed version control system for tracking code changes.", "icon": "git" },
-        { "name": "Linux", "description": "Open-source operating system for development and server environments.", "icon": "linux" },
-        { "name": "AWS", "description": "Cloud computing platform with comprehensive infrastructure services.", "icon": "aws" }
-    ],
-    "ai_ml": [
-        { "name": "LangChain", "description": "Framework for developing applications with large language models.", "icon": "langchain" },
-        { "name": "OpenAI API", "description": "API for integrating GPT models and AI capabilities into applications.", "icon": "openai" },
-        { "name": "HuggingFace", "description": "Platform for machine learning models and natural language processing.", "icon": "huggingface" },
-        { "name": "TensorFlow", "description": "Open-source machine learning framework for building AI models.", "icon": "tensorflow" },
-        { "name": "PyTorch", "description": "Deep learning framework for research and production applications.", "icon": "pytorch" }
-    ],
-    "automation": [
-        { "name": "Budibase", "description": "Low-code platform for building internal tools and business applications.", "icon": "budibase" },
-        { "name": "N8n", "description": "Workflow automation tool for connecting different services and APIs.", "icon": "n8n" },
-        { "name": "Celery", "description": "Distributed task queue for Python applications.", "icon": "celery" },
-        { "name": "Apache Kafka", "description": "Distributed streaming platform for real-time data processing.", "icon": "kafka" }
-    ]
-}
+export const skillsData = [
+    {
+        category: "Programming Languages",
+        skills: ["TypeScript", "JavaScript", "Python", "C++"]
+    },
+    {
+        category: "Backend and Frontend",
+        skills: ["Node.js", "Express", "Django", "FastAPI", "REST APIs", "Bull", "Redis queues", "Celery", "React", "Next.js"]
+    },
+    {
+        category: "AI and Automation",
+        skills: ["LLM agents (Gemini, OpenAI)", "LangChain", "Playwright", "Stagehand", "Browserbase", "n8n"]
+    },
+    {
+        category: "Data and Infrastructure",
+        skills: ["PostgreSQL", "Redis", "Docker", "Kubernetes (HPA)", "Git", "CI/CD", "AWS", "Linux"]
+    }
+]
 
 export const contactData = {
-    email: "rissag906@gmail.com",
+    email: "rishabh.bisht.dev@gmail.com",
     phone: "+91 9354260456",
     location: "Bangalore, India",
     social: {
         linkedin: "https://linkedin.com/in/rishabhsingh940",
-        github: "https://github.com/CurlyRishabh",
-        twitter: "",
-        portfolio: ""
+        github: "https://github.com/CurlyRishabh"
     }
 }
 
 export const educationData = {
-    degree: "Bachelor of Technology in Computer Science & Engineering",
+    degree: "Bachelor of Technology, Computer Science and Engineering",
     institution: "Lovely Professional University, Punjab",
-    period: "2019 - 2023",
-    coursework: ["Data Structures", "Algorithms", "Database Management", "Web Development", "Machine Learning"]
+    period: "2019 - 2023"
 }

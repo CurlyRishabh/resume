@@ -14,20 +14,20 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Rishabh Singh Bisht - Full Stack Developer",
-  description: "Solutions-oriented Full Stack Developer with 1+ years of experience in JavaScript, Python, React.js, and AI integration. Specialized in workflow automation and cloud infrastructure optimization.",
-  keywords: "Full Stack Developer, React.js, Node.js, Python, AI/ML, JavaScript, Portfolio, Rishabh Singh Bisht",
+  title: "Rishabh Singh Bisht - Software Engineer, AI Automation and Distributed Systems",
+  description: "Software Engineer with 2.5+ years of experience building production LLM agent platforms and highly-available backend systems with TypeScript, Node.js, Playwright, Redis and Kubernetes.",
+  keywords: "Software Engineer, LLM agents, AI automation, distributed systems, TypeScript, Node.js, Playwright, Kubernetes, Rishabh Singh Bisht",
   author: "Rishabh Singh Bisht",
   openGraph: {
-    title: "Rishabh Singh Bisht - Full Stack Developer",
-    description: "Solutions-oriented Full Stack Developer specializing in AI integration and workflow automation",
+    title: "Rishabh Singh Bisht - Software Engineer",
+    description: "Building production LLM agent platforms and the distributed systems behind them",
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Rishabh Singh Bisht - Full Stack Developer",
-    description: "Solutions-oriented Full Stack Developer specializing in AI integration and workflow automation",
+    title: "Rishabh Singh Bisht - Software Engineer",
+    description: "Building production LLM agent platforms and the distributed systems behind them",
   },
 };
 

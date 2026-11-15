@@ -8,9 +8,9 @@ export default function Home() {
   return (
     <div className="min-h-screen snap-mandatory snap-y">
       <Hero />
-      <Skills />
-      <Experience />
       <Projects />
+      <Experience />
+      <Skills />
       <Contact />
     </div>
   );

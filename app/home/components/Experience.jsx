@@ -1,33 +1,19 @@
-import { experienceData } from "../data";
+import { experienceData, educationData } from "../data";
+
+function Highlights({ items }) {
+    return (
+        <ul className="space-y-3">
+            {items.map((item) => (
+                <li key={item} className="flex items-start gap-3">
+                    <span className="w-2 h-2 bg-accent2 rounded-full mt-2 flex-shrink-0" aria-hidden="true"></span>
+                    <p className="text-gray-300 leading-relaxed">{item}</p>
+                </li>
+            ))}
+        </ul>
+    );
+}
 
 export default function Experience() {
-    const formatDate = (dateString) => {
-        if (!dateString) return "Present";
-        const date = new Date(dateString);
-        return date.toLocaleDateString('en-US', {
-            month: 'short',
-            year: 'numeric'
-        });
-    };
-
-    const calculateDuration = (startDate, endDate) => {
-        const start = new Date(startDate);
-        const end = endDate ? new Date(endDate) : new Date();
-        const months = (end.getFullYear() - start.getFullYear()) * 12 + (end.getMonth() - start.getMonth());
-        
-        if (months < 12) {
-            return `${months} month${months !== 1 ? 's' : ''}`;
-        } else {
-            const years = Math.floor(months / 12);
-            const remainingMonths = months % 12;
-            if (remainingMonths === 0) {
-                return `${years} year${years !== 1 ? 's' : ''}`;
-            } else {
-                return `${years} year${years !== 1 ? 's' : ''} ${remainingMonths} month${remainingMonths !== 1 ? 's' : ''}`;
-            }
-        }
-    };
-
     return (
         <section className="py-20 bg-gradient-to-br from-black via-gray-900 to-black snap-start" id="experience">
             <div className="container mx-auto px-4">
@@ -38,119 +24,89 @@ export default function Experience() {
                         </span>
                     </h2>
                     <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-                        My professional journey building scalable applications and AI-driven solutions
+                        2.5+ years building LLM agent platforms and the infrastructure that keeps them running
                     </p>
                 </div>
 
-                <div className="relative max-w-6xl mx-auto">
-                    {/* Timeline line */}
-                    <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-accent2 via-accent to-primary rounded-full hidden lg:block" />
-
-                    <div className="space-y-12 lg:space-y-16">
-                        {experienceData.map((experience, index) => (
-                            <div
-                                key={index}
-                                className={`relative flex flex-col lg:flex-row ${
-                                    index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
-                                } items-center gap-8`}
-                                style={{ animationDelay: `${index * 0.2}s` }}
-                            >
-                                {/* Content Card */}
-                                <div className={`w-full lg:w-1/2 ${index % 2 === 0 ? 'lg:pr-12' : "lg:pl-12"}`}>
-                                    <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 lg:p-8 border border-gray-700/50 hover:border-accent2/50 transition-all duration-500 hover:shadow-2xl hover:shadow-accent2/10 group">
-                                        {/* Company Header */}
-                                        <div className="flex items-start gap-4 mb-6">
-                                            <div className="w-12 h-12 bg-gradient-to-br from-accent2 to-accent rounded-xl flex items-center justify-center flex-shrink-0">
-                                                <span className="text-white font-bold text-lg">
-                                                    {experience.company.name.charAt(0)}
-                                                </span>
-                                            </div>
-                                            <div className="flex-1">
-                                                <h3 className="text-xl lg:text-2xl font-bold text-white group-hover:text-accent2 transition-colors">
-                                                    {experience.company.name}
-                                                </h3>
-                                                <p className="text-accent font-semibold text-lg">
-                                                    {experience.role[0].title}
-                                                </p>
-                                                <div className="flex flex-wrap gap-4 mt-2 text-sm text-gray-400">
-                                                    <span className="flex items-center gap-1">
-                                                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                                            <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd"/>
-                                                        </svg>
-                                                        {formatDate(experience.employment_period.start_date)} - {formatDate(experience.employment_period.end_date)}
-                                                    </span>
-                                                    <span className="flex items-center gap-1">
-                                                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd"/>
-                                                        </svg>
-                                                        {calculateDuration(experience.employment_period.start_date, experience.employment_period.end_date)}
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        {/* Achievements */}
-                                        <div className="space-y-4">
-                                            {experience.tasks.map((task, taskIndex) => (
-                                                <div key={taskIndex} className="flex items-start gap-3 group/task">
-                                                    <div className="w-2 h-2 bg-accent2 rounded-full mt-2 flex-shrink-0 group-hover/task:bg-accent transition-colors"></div>
-                                                    <p className="text-gray-300 leading-relaxed group-hover/task:text-white transition-colors">
-                                                        {task}
-                                                    </p>
-                                                </div>
-                                            ))}
-                                        </div>
-
-                                        {/* Company Link */}
-                                        <div className="mt-6 pt-4 border-t border-gray-700/50">
+                <div className="max-w-4xl mx-auto space-y-8">
+                    {experienceData.map((experience) => (
+                        <article
+                            key={experience.company}
+                            className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 lg:p-8 border border-gray-700/50 hover:border-accent2/50 transition-all duration-500"
+                        >
+                            {/* Company header */}
+                            <div className="flex items-start gap-4 mb-5">
+                                <div className="w-12 h-12 bg-gradient-to-br from-accent2 to-accent rounded-xl flex items-center justify-center flex-shrink-0" aria-hidden="true">
+                                    <span className="text-white font-bold text-lg">
+                                        {experience.company.charAt(0)}
+                                    </span>
+                                </div>
+                                <div className="flex-1 min-w-0">
+                                    <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                                        <h3 className="text-xl lg:text-2xl font-bold text-white">
                                             <a
-                                                href={experience.company.link}
+                                                href={experience.link}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="inline-flex items-center gap-2 text-accent2 hover:text-accent transition-colors text-sm font-medium"
+                                                className="hover:text-accent2 transition-colors"
                                             >
-                                                <span>Visit Company</span>
-                                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
-                                                </svg>
+                                                {experience.company}
                                             </a>
-                                        </div>
+                                        </h3>
+                                        <span className="text-sm text-gray-400 whitespace-nowrap">{experience.period}</span>
                                     </div>
+                                    <p className="text-accent font-semibold">
+                                        {experience.title}
+                                        {experience.location && <span className="text-gray-400 font-normal"> · {experience.location}</span>}
+                                    </p>
+                                    {experience.note && (
+                                        <p className="text-sm text-gray-400 mt-1">{experience.note}</p>
+                                    )}
                                 </div>
+                            </div>
 
-                                {/* Timeline Node */}
-                                <div className="hidden lg:flex absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-gradient-to-br from-accent2 to-accent rounded-full border-4 border-black shadow-lg z-10">
-                                    <div className="w-full h-full bg-white rounded-full animate-pulse"></div>
+                            {/* Tech */}
+                            <div className="flex flex-wrap gap-2 mb-6">
+                                {experience.tech.map((tech) => (
+                                    <span
+                                        key={tech}
+                                        className="px-3 py-1 rounded-full text-xs font-medium border bg-accent2/10 text-primary border-accent2/20"
+                                    >
+                                        {tech}
+                                    </span>
+                                ))}
+                            </div>
+
+                            {experience.highlights && <Highlights items={experience.highlights} />}
+
+                            {experience.clients && (
+                                <div className="space-y-6">
+                                    {experience.clients.map((client) => (
+                                        <div key={client.client} className="border-l-2 border-accent2/40 pl-5">
+                                            <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 mb-3">
+                                                <h4 className="text-lg font-semibold text-white">
+                                                    <span className="text-gray-400 font-normal">Client: </span>
+                                                    {client.client}
+                                                </h4>
+                                                <span className="text-sm text-gray-400 whitespace-nowrap">{client.period}</span>
+                                            </div>
+                                            <Highlights items={client.highlights} />
+                                        </div>
+                                    ))}
                                 </div>
+                            )}
+                        </article>
+                    ))}
 
-                                {/* Spacer for alternating layout */}
-                                <div className="hidden lg:block w-1/2" />
-                            </div>
-                        ))}
-                    </div>
-                </div>
-
-                {/* Experience Summary */}
-                <div className="mt-16 text-center">
-                    <div className="bg-gradient-to-r from-accent2/10 to-accent/10 rounded-2xl p-8 border border-accent2/20 max-w-4xl mx-auto">
-                        <h3 className="text-2xl font-bold text-white mb-4">
-                            Professional Highlights
-                        </h3>
-                        <div className="grid md:grid-cols-3 gap-6">
-                            <div className="text-center">
-                                <div className="text-3xl font-bold text-accent2 mb-2">1+</div>
-                                <div className="text-gray-300">Years Experience</div>
-                            </div>
-                            <div className="text-center">
-                                <div className="text-3xl font-bold text-accent mb-2">3</div>
-                                <div className="text-gray-300">Companies</div>
-                            </div>
-                            <div className="text-center">
-                                <div className="text-3xl font-bold text-primary mb-2">30%+</div>
-                                <div className="text-gray-300">Efficiency Improvements</div>
-                            </div>
+                    {/* Education */}
+                    <article className="bg-gradient-to-r from-accent2/10 to-accent/10 rounded-2xl p-6 lg:p-8 border border-accent2/20">
+                        <p className="text-sm uppercase tracking-wider text-accent2 font-semibold mb-2">Education</p>
+                        <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                            <h3 className="text-xl font-bold text-white">{educationData.degree}</h3>
+                            <span className="text-sm text-gray-400 whitespace-nowrap">{educationData.period}</span>
                         </div>
-                    </div>
+                        <p className="text-gray-300 mt-1">{educationData.institution}</p>
+                    </article>
                 </div>
             </div>
         </section>
