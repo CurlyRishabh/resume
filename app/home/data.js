@@ -16,13 +16,67 @@ export const homeData = {
     github: "https://github.com/CurlyRishabh",
     resume: "/rishabhBishtDev.pdf",
     experienceYears: "2.5+",
-    stats: [
-        { value: "90%", label: "of eligible orders handled automatically" },
-        { value: "10–20 min", label: "of manual work saved on every order" },
-        { value: "1–3 days", label: "to set up a new vendor, down from 1–2 weeks" },
-        { value: "~80%", label: "of eligible client emails answered automatically" }
-    ]
+    // Drift slowly at the sides of the hero on wide screens.
+    floatingChips: ["TypeScript", "Python", "Kubernetes", "Playwright", "LLM agents", "Redis", "Kotlin", "Next.js"]
 }
+
+// Personal projects: things anyone can download, run or read the code of.
+// Facts come from each repository's README and source.
+export const builtData = [
+    {
+        id: "voicetype",
+        name: "VoiceType",
+        kind: "Android and macOS app",
+        line: "Free, private, offline voice typing. Talk in any app and get clean, punctuated text.",
+        points: [
+            "Your voice never leaves the device: the apps have no network permission at all",
+            "Removes filler words and applies your self-corrections as you speak",
+            "English, Hindi and Hinglish, with optional on-device AI polish"
+        ],
+        techStack: ["Kotlin", "Swift", "Whisper", "Moonshine", "sherpa-onnx", "Gemma (LiteRT-LM)"],
+        links: [
+            { label: "Download", href: "https://github.com/CurlyRishabh/VoiceType/releases/latest", primary: true },
+            { label: "View code", href: "https://github.com/CurlyRishabh/VoiceType" }
+        ],
+        visual: "voice",
+        caption: "Illustration of how it works"
+    },
+    {
+        id: "shop",
+        name: "Cool Store",
+        kind: "Web app, live demo",
+        line: "A complete online shoe shop: browse, filter, add to cart and check out, all in the browser.",
+        points: [
+            "Filter products by category, brand, colour and price",
+            "Cart with quantities and live totals, saved between visits",
+            "Full checkout flow with an order ID, plus dark and light themes"
+        ],
+        techStack: ["React", "React Router", "Tailwind CSS", "Framer Motion"],
+        links: [
+            { label: "Open live site", href: "https://curlyrishabh.github.io/E-commerce/", primary: true },
+            { label: "View code", href: "https://github.com/CurlyRishabh/E-commerce" }
+        ],
+        visual: "shop",
+        caption: "Screenshot of the live site"
+    },
+    {
+        id: "repl",
+        name: "Terminal REPL Portfolio",
+        kind: "Web app",
+        line: "A portfolio you use like a terminal: type a command, or run any JavaScript.",
+        points: [
+            "Commands such as help, skills, projects and contact",
+            "Anything else runs as JavaScript inside a sandboxed Web Worker",
+            "A 2-second timeout stops runaway code from freezing the page"
+        ],
+        techStack: ["Next.js", "TypeScript", "React", "Web Workers"],
+        links: [
+            { label: "View code", href: "https://github.com/CurlyRishabh/repl-portfolio", primary: true }
+        ],
+        visual: "terminal",
+        caption: "Illustration of how it works"
+    }
+]
 
 // "Before and After" stories. Each one has a plain sentence for any reader,
 // the manual steps before, the automated steps after, and one technical line
@@ -50,36 +104,12 @@ export const projectData = [
         tech: "Declarative DB-driven configs and connection factories, with a migration from Stagehand v2 to v3."
     },
     {
-        title: "Long AI jobs that keep running",
-        context: "RealPage (Rexera)",
-        plain: "Each AI run takes several minutes. I moved these runs into a queue with their own workers and fixed the memory crashes, so they no longer tie up the main application.",
-        before: ["Multi-minute AI runs inside the application servers", "Containers ran out of memory and crashed"],
-        after: ["Runs wait in a queue", "Workers scale with demand", "Payment runs are never retried automatically", "Releases wait for running jobs to finish"],
-        tech: "Bull/Redis queue on Kubernetes (HPA, 1–3 pods), zero retries on non-idempotent payment runs, 35-minute SIGTERM drains, V8 heap capped at 640 MB."
-    },
-    {
         title: "Client emails answered automatically",
         context: "Rexera, via MountBlue",
         plain: "Clients email questions about their orders at all hours. An AI agent now answers about 80% of the eligible ones, and hands anything sensitive to a person.",
         before: ["Client emails a question about an order", "A team member looks it up and replies"],
         after: ["Email arrives, any time of day", "AI agent answers order questions", "Payment and sensitive topics go to a person", "~80% of eligible emails answered automatically"],
         tech: "The Mailbox Agent: an LLM agent with a human-in-the-loop escalation flag. Python, LangChain, Gemini, OpenAI."
-    },
-    {
-        title: "Documents read and cross-checked by AI",
-        context: "Rexera, via MountBlue",
-        plain: "Legal and financial documents arrive in no fixed format. AI agents now pull out the key terms and compare them with what the client was told.",
-        before: ["Unstructured legal and financial documents arrive", "Terms are checked by hand against client messages"],
-        after: ["AI agents extract the key terms", "Terms are cross-checked against client communications", "Extraction, QA and reconciliation in one flow"],
-        tech: "Multi-agent LLM workflow for end-to-end document intelligence: extraction, cross-referencing and reconciliation."
-    },
-    {
-        title: "Content updates without an engineer",
-        context: "Swish Club, via MountBlue",
-        plain: "Updating app content used to mean typing data in by hand, editing the database and releasing code. The team now does it themselves in a dashboard.",
-        before: ["Content typed in by hand", "Manual database edits", "A code release for each change"],
-        after: ["Team fills in a CMS form", "Dashboard manages 500+ products and coupons", "No engineer needed", "90% less manual data entry, ~15 hours saved weekly"],
-        tech: "CMS-based generator (React, Django) and an internal operations dashboard."
     }
 ]
 

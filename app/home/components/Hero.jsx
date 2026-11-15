@@ -1,53 +1,109 @@
 import { homeData } from "../data";
-import Image from "next/image";
-import Badge from "@/app/components/common/Badge";
+import PointerGlow from "@/app/components/motion/PointerGlow";
+import Magnetic from "@/app/components/motion/Magnetic";
 
-const linkBase = "flex items-center gap-2 px-6 py-3 rounded-full transition-all duration-300 hover:scale-105";
+const linkBase = "flex items-center gap-2 px-6 py-3 rounded-full transition-colors duration-300";
+
+// The name is coloured letter by letter along this gradient, because each
+// letter animates on its own and cannot share one clipped background.
+const STOPS = [[240, 240, 245], [203, 204, 255], [146, 150, 240]];
+function colorAt(t) {
+    const scaled = t * (STOPS.length - 1);
+    const i = Math.min(STOPS.length - 2, Math.floor(scaled));
+    const f = scaled - i;
+    return `rgb(${STOPS[i].map((v, k) => Math.round(v + (STOPS[i + 1][k] - v) * f)).join(",")})`;
+}
+
+// Where the drifting tech chips sit, as [top, side offset] percentages.
+const CHIP_SPOTS = [[17, 5], [32, 2], [47, 7], [61, 3]];
+
+function AnimatedName({ name }) {
+    const total = name.replace(/ /g, "").length;
+    let seen = 0;
+    return (
+        <h1 className="text-5xl md:text-7xl font-semibold tracking-tight leading-tight" aria-label={name}>
+            {name.split(" ").map((word, w) => (
+                <span key={w} className="inline-block whitespace-nowrap mx-[0.14em]" aria-hidden="true">
+                    {word.split("").map((letter) => {
+                        const index = seen++;
+                        return (
+                            <span
+                                key={index}
+                                className="letter inline-block"
+                                style={{ "--i": index, color: colorAt(index / (total - 1)) }}
+                            >
+                                {letter}
+                            </span>
+                        );
+                    })}
+                </span>
+            ))}
+        </h1>
+    );
+}
 
 export default function Hero() {
+    const chips = homeData.floatingChips;
+    const half = Math.ceil(chips.length / 2);
+
     return (
-        <section className="min-h-[100vh] flex items-center snap-start relative pt-28 pb-16" id='home'>
-            <div className="container mx-auto px-4 relative z-10">
-                <div className="grid lg:grid-cols-[3fr_2fr] gap-12 items-center">
-                    {/* Left side - who, what, and how to reach me */}
-                    <div className="space-y-8 text-center lg:text-left">
-                        <div className="space-y-5">
-                            <div className="rise" style={{ "--i": 0 }}>
-                                <h1 className="text-4xl md:text-6xl font-bold">
-                                    <span className="bg-gradient-to-r from-primary via-accent2 to-accent bg-clip-text text-transparent">
-                                        {homeData.name}
-                                    </span>
-                                </h1>
-                                <p className="text-lg md:text-xl text-gray-300 mt-3">
-                                    {homeData.headline}
-                                    <span className="text-accent2"> · {homeData.focus}</span>
-                                </p>
-                            </div>
+        <PointerGlow
+            as="section"
+            id="home"
+            className="pointer-glow min-h-[100vh] flex items-center snap-start relative pt-28 pb-16 overflow-hidden"
+        >
+            {/* Tech chips drifting in the side margins (wide screens only) */}
+            <div className="hidden xl:block" aria-hidden="true">
+                {chips.map((chip, index) => {
+                    const onLeft = index < half;
+                    const [top, offset] = CHIP_SPOTS[(onLeft ? index : index - half) % CHIP_SPOTS.length];
+                    return (
+                        <span
+                            key={chip}
+                            className="float-chip absolute rounded-full border border-accent2/30 bg-gray-900/70 px-4 py-1.5 text-sm text-primary font-mono"
+                            style={{ top: `${top}%`, [onLeft ? "left" : "right"]: `${offset}%`, "--i": index }}
+                        >
+                            {chip}
+                        </span>
+                    );
+                })}
+            </div>
 
-                            <p className="rise text-2xl md:text-4xl font-semibold text-white leading-snug" style={{ "--i": 2 }}>
-                                {homeData.tagline}{" "}
-                                <span className="draw-underline">{homeData.taglineAccent}</span>.
-                            </p>
+            <div className="container mx-auto px-4 relative z-10 text-center">
+                <div className="max-w-4xl mx-auto space-y-6">
+                    <AnimatedName name={homeData.name} />
 
-                            <p className="rise text-gray-300 text-lg max-w-2xl leading-relaxed mx-auto lg:mx-0" style={{ "--i": 3 }}>
-                                {homeData.intro}
-                            </p>
-                        </div>
+                    <p className="rise text-lg md:text-xl text-gray-300" style={{ "--i": 8 }}>
+                        {homeData.headline}
+                        <span className="text-accent2"> · {homeData.focus}</span>
+                    </p>
 
-                        {/* Primary links */}
-                        <div className="rise flex flex-wrap gap-3 justify-center lg:justify-start" style={{ "--i": 4 }}>
+                    <p className="rise text-2xl md:text-4xl font-semibold text-white leading-snug" style={{ "--i": 10 }}>
+                        {homeData.tagline}{" "}
+                        <span className="draw-underline">{homeData.taglineAccent}</span>.
+                    </p>
+
+                    <p className="rise text-gray-300 text-lg max-w-2xl leading-relaxed mx-auto" style={{ "--i": 11 }}>
+                        {homeData.intro}
+                    </p>
+
+                    {/* Primary links */}
+                    <div className="rise flex flex-wrap gap-3 justify-center pt-2" style={{ "--i": 12 }}>
+                        <Magnetic>
                             <a
                                 href={homeData.resume}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className={`${linkBase} bg-accent hover:bg-accent/80 text-white hover:shadow-lg`}
+                                className={`${linkBase} bg-white hover:bg-gray-200 text-black font-semibold`}
                             >
                                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v12m0 0l-4-4m4 4l4-4M4 20h16"/>
                                 </svg>
                                 Download Resume
                             </a>
+                        </Magnetic>
 
+                        <Magnetic>
                             <a
                                 href={`mailto:${homeData.email}`}
                                 className={`${linkBase} border border-accent2 text-accent2 hover:bg-accent2 hover:text-black`}
@@ -58,7 +114,9 @@ export default function Hero() {
                                 </svg>
                                 Email Me
                             </a>
+                        </Magnetic>
 
+                        <Magnetic>
                             <a
                                 href={homeData.linkedin}
                                 target="_blank"
@@ -70,7 +128,9 @@ export default function Hero() {
                                 </svg>
                                 LinkedIn
                             </a>
+                        </Magnetic>
 
+                        <Magnetic>
                             <a
                                 href={homeData.github}
                                 target="_blank"
@@ -82,68 +142,24 @@ export default function Hero() {
                                 </svg>
                                 GitHub
                             </a>
-                        </div>
-
-                        {/* Location */}
-                        <div className="rise flex flex-wrap gap-6 justify-center lg:justify-start text-sm text-gray-400" style={{ "--i": 5 }}>
-                            <div className="flex items-center gap-2">
-                                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                                    <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd"/>
-                                </svg>
-                                {homeData.location}
-                            </div>
-                            <div className="flex items-center gap-2">
-                                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                                Available for opportunities
-                            </div>
-                        </div>
+                        </Magnetic>
                     </div>
 
-                    {/* Right side - photo and floating badges */}
-                    <div className="rise relative flex justify-center lg:justify-end" style={{ "--i": 3 }}>
-                        <div className="relative">
-                            <div className="w-64 h-64 sm:w-80 sm:h-80 relative">
-                                <div className="absolute inset-0 bg-gradient-to-br from-accent/30 to-accent2/30 rounded-full blur-2xl"></div>
-                                <Image
-                                    src="/hero/hero1.png"
-                                    alt="Rishabh Singh Bisht"
-                                    className="relative z-10 rounded-full object-cover border-4 border-accent2/20"
-                                    fill={true}
-                                    sizes="(max-width: 640px) 16rem, 20rem"
-                                    priority
-                                />
-                            </div>
-
-                            <Badge
-                                text="AI Agents"
-                                className="absolute -top-4 -right-4 animate-float bg-gradient-to-r from-accent to-accent2 text-white border-0 shadow-lg z-20"
-                            />
-                            <Badge
-                                text="Automation"
-                                className="absolute bottom-0 -right-2 animate-float-delayed bg-gradient-to-r from-primary to-accent2 text-black border-0 shadow-lg z-20"
-                            />
-                            <Badge
-                                text={`${homeData.experienceYears} Years Experience`}
-                                className="absolute top-1/2 -left-8 animate-float-slow bg-gradient-to-r from-accent2 to-secondary text-white border-0 shadow-lg z-20"
-                            />
+                    {/* Location */}
+                    <div className="rise flex flex-wrap gap-6 justify-center text-sm text-gray-400" style={{ "--i": 13 }}>
+                        <div className="flex items-center gap-2">
+                            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                                <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd"/>
+                            </svg>
+                            {homeData.location}
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                            Available for opportunities
                         </div>
                     </div>
                 </div>
-
-                {/* Impact numbers: shown at once, no counting */}
-                <dl className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-16">
-                    {homeData.stats.map((stat, index) => (
-                        <div
-                            key={stat.label}
-                            className="rise bg-gray-900/70 backdrop-blur-sm rounded-2xl p-5 border border-gray-700/60 text-center lg:text-left"
-                            style={{ "--i": 6 + index }}
-                        >
-                            <dd className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-accent2 to-accent bg-clip-text text-transparent">{stat.value}</dd>
-                            <dt className="text-gray-300 text-sm mt-1 leading-snug">{stat.label}</dt>
-                        </div>
-                    ))}
-                </dl>
             </div>
-        </section>
+        </PointerGlow>
     );
 }

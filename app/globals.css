@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --background: #000000;
-  --foreground: #ffffff;
+  --background: #07080b;
+  --foreground: #ededf2;
 }
 html {
   scroll-behavior: smooth;
@@ -23,12 +23,12 @@ body {
   /* One page-wide backdrop: a faint dot grid over two soft glows. Sections
      sit on top of it transparently, so the page reads as one surface. */
   background-image:
-    radial-gradient(rgba(146, 150, 240, 0.13) 1px, transparent 1px),
-    radial-gradient(60rem 40rem at 85% -5%, rgba(237, 94, 147, 0.12), transparent 60%),
-    radial-gradient(50rem 40rem at 0% 30%, rgba(146, 150, 240, 0.10), transparent 60%);
+    radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+    radial-gradient(60rem 40rem at 85% -5%, rgba(146, 150, 240, 0.10), transparent 60%),
+    radial-gradient(50rem 40rem at 0% 30%, rgba(146, 150, 240, 0.06), transparent 60%);
   background-size: 28px 28px, 100% 100rem, 100% 120rem;
   background-repeat: repeat, no-repeat, no-repeat;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
 /* typewriter */
@@ -124,16 +124,16 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: #1a1a1a;
+  background: #07080b;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #ed5e93;
+  background: #2c2f42;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #a248df;
+  background: #9296f0;
 }
 
 /* Loading animations */
@@ -331,7 +331,7 @@ html {
   bottom: -0.12em;
   height: 0.14em;
   border-radius: 999px;
-  background: linear-gradient(90deg, #9296f0, #ed5e93);
+  background: #9296f0;
   transform-origin: left;
   animation: draw-line 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) 0.9s both;
 }
@@ -367,3 +367,190 @@ html {
 [data-reveal="armed"] .bar-fill {
   transform: scaleX(0);
 }
+
+
+/* ------------------------------------------------------------------
+   Motion layer: hero intro, pointer effects, demos, marquee
+   ------------------------------------------------------------------ */
+
+/* Hero name: each letter flips up into place. */
+@keyframes letter-in {
+  from { opacity: 0; transform: translateY(0.5em) rotateX(-80deg); filter: blur(6px); }
+  to   { opacity: 1; transform: translateY(0) rotateX(0); filter: blur(0); }
+}
+.letter {
+  transform-origin: 50% 100%;
+  animation: letter-in 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation-delay: calc(var(--i, 0) * 45ms);
+}
+
+/* Hero: tech chips drifting in the margins. */
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0); }
+  50%      { transform: translate(10px, -18px); }
+}
+.float-chip {
+  opacity: 0.75;
+  animation: rise 0.8s ease-out both, drift 7s ease-in-out infinite;
+  animation-delay: calc(var(--i, 0) * 120ms + 900ms), calc(var(--i, 0) * -900ms);
+}
+
+/* A soft light that follows the mouse (PointerGlow sets --mx / --my). */
+.pointer-glow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(38rem circle at var(--mx, 50%) var(--my, 35%), rgba(146, 150, 240, 0.16), transparent 65%);
+}
+
+/* Project panels: tilt towards the mouse, with a light under it. */
+.tilt-card {
+  position: relative;
+  transform: perspective(1400px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform 0.25s ease-out, border-color 0.3s ease-out;
+}
+.tilt-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+  background: radial-gradient(28rem circle at var(--mx, 50%) var(--my, 50%), rgba(146, 150, 240, 0.10), transparent 60%);
+}
+.tilt-card:hover::after { opacity: 1; }
+.tilt-card:hover { border-color: rgba(146, 150, 240, 0.5); }
+
+/* Buttons that lean towards the mouse (Magnetic sets --tx / --ty). */
+.magnetic {
+  transform: translate(var(--tx, 0px), var(--ty, 0px));
+  transition: transform 0.2s ease-out;
+}
+
+/* VoiceType demo: sound wave. Flat unless its row has .wave-on. */
+@keyframes wave {
+  0%, 100% { transform: scaleY(0.25); }
+  50%      { transform: scaleY(1); }
+}
+.wave-bar {
+  height: 100%;
+  transform: scaleY(0.12);
+  transition: transform 0.3s ease-out;
+}
+.wave-on .wave-bar {
+  animation: wave 0.9s ease-in-out infinite;
+  animation-delay: calc(var(--i, 0) * -137ms);
+}
+
+/* Terminal demo: idle cursor. */
+@keyframes cursor-blink {
+  0%, 49%   { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+.cursor-blink { animation: cursor-blink 1.1s step-end infinite; }
+
+/* Skills strip. Each track holds its list four times, so sliding by a
+   quarter of its width loops seamlessly. */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-25%); }
+}
+.marquee {
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+.marquee-track { animation: marquee 38s linear infinite; }
+.marquee-reverse { animation-direction: reverse; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+
+/* Section headings wipe in from the left when revealed. */
+[data-reveal] h2 {
+  clip-path: inset(-20% -5% -20% -5%);
+  transition: clip-path 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) 0.1s;
+}
+[data-reveal="armed"] h2 {
+  clip-path: inset(-20% 100% -20% -5%);
+}
+
+/* Effects that move things on their own are switched off entirely for
+   visitors who ask for reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  .tilt-card, .magnetic { transform: none !important; }
+  .marquee-track, .float-chip, .wave-on .wave-bar, .cursor-blink { animation: none !important; }
+  .float-chip { opacity: 0.75; }
+}
+
+
+/* Shop preview: a tall screenshot panning inside a fixed window. */
+@keyframes shop-pan {
+  from { transform: translateY(0); }
+  to   { transform: translateY(calc(-100% + 22rem)); }
+}
+.shop-pan { animation: shop-pan 22s ease-in-out 1.5s infinite alternate; }
+.shop-window:hover .shop-pan { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) {
+  .shop-pan { animation: none !important; }
+}
+
+
+/* ------------------------------------------------------------------
+   Custom cursor (Cursor.jsx). Hidden until the mouse first moves, so
+   touch devices and no-JS visitors never see it.
+   ------------------------------------------------------------------ */
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0;
+  will-change: transform;
+  /* Position is set every frame from script, so it must not be eased by
+     the page-wide transition rule; only the fade is. */
+  transition: opacity 0.2s ease-out;
+}
+/* The ring inverts whatever is beneath it. */
+.cursor-ring { mix-blend-mode: difference; }
+
+.cursor-dot > span,
+.cursor-ring > span {
+  display: block;
+  border-radius: 50%;
+  transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1), background-color 0.25s ease-out;
+}
+.cursor-dot > span {
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  background: #9296f0;
+}
+.cursor-ring > span {
+  width: 36px;
+  height: 36px;
+  margin: -18px 0 0 -18px;
+  border: 1.5px solid #fff;
+  background: transparent;
+}
+
+html.cursor-on .cursor-dot,
+html.cursor-on .cursor-ring { opacity: 1; }
+
+/* Over links and buttons: grow into a filled disc that inverts the label. */
+html.cursor-hover .cursor-ring > span { transform: scale(1.9); background: #fff; }
+html.cursor-hover .cursor-dot > span { transform: scale(0); }
+html.cursor-down .cursor-ring > span { transform: scale(0.8); }
+html.cursor-down.cursor-hover .cursor-ring > span { transform: scale(1.6); }
+
+/* The native arrow is hidden only while the custom cursor is showing. */
+html.cursor-on,
+html.cursor-on * { cursor: none !important; }
+
+/* In form fields the custom cursor steps aside for the text cursor. */
+html.cursor-field .cursor-dot,
+html.cursor-field .cursor-ring { opacity: 0; }
+html.cursor-on input,
+html.cursor-on textarea { cursor: text !important; }
+html.cursor-on select { cursor: auto !important; }

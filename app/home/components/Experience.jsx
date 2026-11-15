@@ -1,5 +1,6 @@
 import { experienceData, educationData, careerNote } from "../data";
 import Reveal from "@/app/components/common/Reveal";
+import TimelineRail from "@/app/components/motion/TimelineRail";
 
 function Highlights({ items }) {
     return (
@@ -16,11 +17,11 @@ function Highlights({ items }) {
 
 export default function Experience() {
     return (
-        <section className="py-20 snap-start" id="experience">
+        <section className="py-28 snap-start" id="experience">
             <div className="container mx-auto px-4">
                 <Reveal className="text-center mb-12">
-                    <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                        <span className="bg-gradient-to-r from-primary via-accent2 to-accent bg-clip-text text-transparent">
+                    <h2 className="text-4xl md:text-6xl font-semibold tracking-tight mb-5">
+                        <span className="text-white">
                             Work Experience
                         </span>
                     </h2>
@@ -29,7 +30,7 @@ export default function Experience() {
                     </p>
                 </Reveal>
 
-                <div className="max-w-4xl mx-auto space-y-8">
+                <TimelineRail className="max-w-4xl mx-auto space-y-8">
                     {/* Why several company names appear in a short span */}
                     <Reveal className="flex items-start gap-3 rounded-2xl border border-accent2/30 bg-accent2/10 px-5 py-4 text-gray-200">
                         <span className="text-accent2 font-bold" aria-hidden="true">→</span>
@@ -40,12 +41,12 @@ export default function Experience() {
                         <Reveal
                             as="article"
                             key={experience.company}
-                            className="bg-gray-900/70 backdrop-blur-sm rounded-2xl p-6 lg:p-8 border border-gray-700/60 hover:border-accent2/50"
+                            className="bg-white/[0.03] backdrop-blur-sm rounded-2xl p-6 lg:p-8 border border-white/10 hover:border-accent2/50"
                         >
                             {/* Company header */}
                             <div className="flex items-start gap-4 mb-5">
                                 <div className="w-12 h-12 bg-gradient-to-br from-accent2 to-accent rounded-xl flex items-center justify-center flex-shrink-0" aria-hidden="true">
-                                    <span className="text-white font-bold text-lg">
+                                    <span className="text-black font-bold text-lg">
                                         {experience.company.charAt(0)}
                                     </span>
                                 </div>
@@ -115,7 +116,7 @@ export default function Experience() {
                         </div>
                         <p className="text-gray-300 mt-1">{educationData.institution}</p>
                     </Reveal>
-                </div>
+                </TimelineRail>
             </div>
         </section>
     );
